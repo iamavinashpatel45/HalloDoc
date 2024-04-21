@@ -1,0 +1,63 @@
+﻿@model Services.ViewModels.Admin.Agreement
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Agreement";
+    ViewBag.CssFile = "/css/admin/_requestPopUp.css";
+}
+
+
+<div class="container my-lg-5 py-lg-5">
+    <div class="fs-4 mt-5">
+        To provide best medical service, we cannot determine the cost right away. If you agree to our service, so we
+        will provide care and
+        follow-up until all care is completed. So with this points, if you like us to provide care to you click on
+        "Agree" and we'll get
+        started immediately, if you do not agree simply click "Cancel".
+    </div>
+    <div class="d-flex justify-content-between mt-4 mx-md-3">
+        <form asp-controller="Admin" asp-action="AgreementAgree">
+            <input readonly class="d-none patientRequestId" asp-for="RequestId" type="text" />
+            <button class="bg-primary text-white p-3 px-4 fw-bold rounded-3">
+                I Agree
+            </button>
+        </form>
+        <button class="bg-danger text-white p-3 px-4 fw-bold rounded-3" data-bs-target="#cancelAgreementRequest"
+            data-bs-toggle="modal">
+            Cancel
+        </button>
+    </div>
+</div>
+@*------------Modal------------ *@
+<div class="modal" tabindex="-1" id="cancelAgreementRequest">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Cancel Confirmation</h5>
+                <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle-fill h3 modal-title"></i>
+                </button>
+            </div>
+            <form asp-controller="Admin" asp-action="AgreementDeclined">
+                <div class="modal-body">
+                    <input readonly class="d-none patientRequestId" asp-for="RequestId" type="text" />
+                    @Model.FirstName @Model.LastName
+                    <div class="form-floating mt-3">
+                        <textarea asp-for="CancelationReson" class="form-control h-100 border-2 mb-4 mt-3"
+                            placeholder="AdditionalNotes" id="assignReuqestNotes" rows="5">  </textarea>
+                        <label for="assignReuqestNotes">Additional Notes</label>
+                        <span asp-validation-for="CancelationReson" class="text-danger"></span>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn mx-2" id="conformButton">
+                            Conform
+                        </button>
+                        <button type="button" class="btn" data-bs-dismiss="modal" id="closeButton">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

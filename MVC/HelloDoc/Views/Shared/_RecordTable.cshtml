@@ -1,0 +1,206 @@
+﻿@model List<Services.ViewModels.Admin.RecordTableData>
+
+@{
+    List<String> requester = new List<String>() { "", "Business", "Patient", "Family", "Concierge", "VIP" };
+}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="bg-transparent">
+                    Patient Name
+                </th>
+                <th class="bg-transparent">
+                    Requestor
+                </th>
+                <th class="bg-transparent">
+                    Date Of Service
+                </th>
+                <th class="bg-transparent">
+                    Close Case Date
+                </th>
+                <th class="bg-transparent">
+                    Email
+                </th>
+                <th class="bg-transparent">
+                    Phone Number
+                </th>
+                <th class="bg-transparent">
+                    Address
+                </th>
+                <th class="bg-transparent">
+                    Zip
+                </th>
+                <th class="bg-transparent">
+                    Request Status
+                </th>
+                <th class="bg-transparent">
+                    Physician
+                </th>
+                <th class="bg-transparent">
+                    Physician Note
+                </th>
+                <th class="bg-transparent">
+                    Cancelled By Provider Note
+                </th>
+                <th class="bg-transparent">
+                    Admin Note
+                </th>
+                <th class="bg-transparent">
+                    Patient Note
+                </th>
+                <th class="bg-transparent">
+                    Delete Permanently
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="align-middle bg-white">
+                    <td>
+                        @item.PatientName
+                    </td>
+                    <td>
+                        @requester[@item.RequestType]
+                    </td>
+                    <td>
+                        @*@item.DateOfService.ToString("MMM dd, yyy")*@
+                    </td>
+                    <td>
+                        @item.ColseCaseDate.ToString("MMM dd, yyy")
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        @item.Zip
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        @item.PhysicianName
+                    </td>
+                    <td>
+                        @item.PhysicianNotes
+                    </td>
+                    <td>
+                        @item.CancleNotes
+                    </td>
+                    <td>
+                        @item.AdminNotes
+                    </td>
+                    <td>
+                        @item.PatientNotes
+                    </td>
+                    <td>
+                        <a asp-controller="" asp-action="" asp-route-venderId="">
+                            <button class="bg-white px-3">
+                                Delete
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@foreach (var item in Model)
+{
+    <div class="accordion accordion-flush w-100" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button collapsed h-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-@item.RequestId" aria-controls="panelsStayOpen-collapseOne">
+                    @item.PatientName
+                </button>
+                <hr class="h1">
+            </h2>
+            <div id="panelsStayOpen-@item.RequestId" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body row">
+                    <div>
+                        <i class="bi bi-person-fill rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Profession : @requester[@item.RequestType]
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-envelope rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Email : @item.Email
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-telephone rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Phone : @item.Phone
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-geo-alt rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Address : @item.Address
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-pin-map rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            ZipCode : @item.Zip
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-check-lg rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Request Status :
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-person-workspace rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Provider : @item.PhysicianName
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-journal-text rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Provider Notes : @item.PhysicianNotes
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-journal-text rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Cancle By Provider Notes : @item.CancleNotes
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-journal-text rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Admin Notes : @item.AdminNotes
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-journal-text rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Patient Notes : @item.PhysicianNotes
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center mb-2">
+                        <a asp-controller="" asp-action="" asp-route-venderId="">
+                            <button class="bg-white px-3">
+                                Delete
+                            </button>
+                        </a>
+                    </div>
+                    <hr class="h1">
+                </div>
+            </div>
+        </div>
+    </div>
+}

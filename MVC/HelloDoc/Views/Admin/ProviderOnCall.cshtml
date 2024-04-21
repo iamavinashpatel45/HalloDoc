@@ -1,0 +1,48 @@
+﻿@model Services.ViewModels.Admin.ProviderOnCall
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Provider On Call";
+    ViewBag.JsFile = "/js/Admin/providerScheduling.js";
+    ViewBag.CssFile = "/css/Admin/providerScheduling.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+        <h3>
+            MDs On Call
+        </h3>
+        <a asp-controller="Admin" asp-action="ProviderScheduling">
+            <button class="bg-white px-3 fw-bold py-2">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-3 topElements">
+        <select class="form-select select shadow-none" id="regionsListProviderOnCall">
+            <option selected>All Region</option>
+            @foreach (var item in Model.Regions)
+            {
+                <option value="@item.Key">@item.Value</option>
+            }
+        </select>
+        <div class="topButtons">
+            <a asp-controller="Admin" asp-action="ProviderScheduling">
+                <button class="fw-bold coloredButtons py-2 px-2 topButtons bg-white">
+                    Calender View
+                </button>
+            </a>
+            <a asp-controller="Admin" asp-action="RequestedShift">
+                <button class="coloredButtons fw-bold py-2 px-2 topButtons bg-white">
+                    Shifts For Review
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="providerList">
+        <partial name="_ProviderOnCallTable" model="@Model.ProviderList"></partial>
+    </div>
+</div>

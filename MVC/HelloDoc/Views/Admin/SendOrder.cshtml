@@ -1,0 +1,100 @@
+﻿@model Services.ViewModels.Admin.SendOrder
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    string role = httpContextAccessor.HttpContext.Session.GetString("role");
+    Layout = $"_{role}Layout";
+    ViewData["Title"] = "Send Order";
+    ViewBag.JsFile = "/js/Admin/sendOrder.js";
+    ViewBag.CssFile = "/css/Admin/sendOrder.css";
+    ViewBag.Header = $"_{role}DashboardHeader";
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-content-center mt-3 mb-3">
+        <span class="h3 mt-2">
+            Send Order
+        </span>
+        <a asp-controller="@role" asp-action="Dashboard">
+            <button id="backBox">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <form class="w-100" id="form" asp-controller="Admin" asp-action="SendOrder">
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <select class="form-select" id="selectedProfession" asp-for="SelectedProfession"
+                    onchange="changeSelect()">
+                    <option disabled selected value="">Select Profession</option>
+                    @foreach (var item in Model.Professions)
+                    {
+                        <option value="@item.Key">@item.Value</option>
+                    }
+                </select>
+                <label for="selectedProfession">Select Profession</label>
+                <span asp-validation-for="SelectedProfession" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <select class="form-select" id="selectedBusiness" asp-for="SelectedBusiness"
+                    onchange="changeBussiness()">
+                    <option disabled selected value="">Select Bussiness</option>
+                </select>
+                <label for="selectedBusiness">Bussiness</label>
+                <span asp-validation-for="SelectedBusiness" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input disabled class="form-control contact" id="contact" placeholder="Contact" />
+                <input readonly class="contact d-none" asp-for="Contact" />
+                <label for="contact">Business Contact</label>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input disabled class="form-control email" id="email" placeholder="Email" />
+                <input readonly class="d-none email" asp-for="Email" />
+                <label for="email">Business Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input disabled class="form-control faxNumber" id="faxNumber" placeholder="FaxNumber" />
+                <input readonly class="d-none faxNumber" asp-for="FaxNumber" />
+                <label for="faxNumber">Fax Number</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating">
+                <textarea class="form-control h-75" id="orderDetils" rows="3" asp-for="OrderDetails"
+                    placeholder="OrderDeatails"></textarea>
+                <label for="orderDetils">Prescription or Order details</label>
+                <span asp-validation-for="OrderDetails" class="text-danger"></span>
+                <span id="orderDetailsValidation" class="text-danger validation">The Prescription&OrderDetails field is
+                    required.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <select class="form-select" id="refill" asp-for="NoOfRefill">
+                    <option selected value="0">Not Required</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <label for="refill">No Of Refill</label>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+            <button id="submitButton" class="me-3 px-3" type="submit">
+                Submit
+            </button>
+            <button type="button" class="px-3">
+                Cancle
+            </button>
+        </div>
+    </form>
+</div>

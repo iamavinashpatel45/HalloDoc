@@ -1,0 +1,37 @@
+﻿@model Services.ViewModels.Admin.BlockPopUp
+
+<link href="~/css/admin/_requestPopUp.css" rel="stylesheet" />
+<script src="~/js/Admin/requestPopUp.js"></script>
+<div class="modal" tabindex="-1" id="blockRequest">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Conform Block</h5>
+                <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle-fill h3 modal-title"></i>
+                </button>
+            </div>
+            <form asp-controller="Admin" asp-action="BlockPopUp">
+                <div class="modal-body">
+                    <div class="h5">
+                        Patient Name : <span class="patientName"> </span>
+                    </div>
+                    <input readonly class="d-none patientRequestId" asp-for="RequestId" type="text" />
+                    <div class="form-floating">
+                        <textarea asp-for="AdminTransferNotes" class="form-control h-100 border-2 mb-4 mt-3" placeholder="AdditionalNotes" id="Notes" rows="5">
+                        </textarea>
+                        <label for="Notes">Additional Notes</label>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn mx-2" id="conformButton">
+                            Conform
+                        </button>
+                        <button type="reset" class="btn" data-bs-dismiss="modal" id="closeButton">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

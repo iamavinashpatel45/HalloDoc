@@ -1,0 +1,68 @@
+﻿@model Services.ViewModels.Admin.EmailSmsLogs
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "SMS Logs";
+    ViewBag.JsFile = "/js/Admin/record.js";
+    ViewBag.CssFile = "/css/Admin/records.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+        <h3>
+            SMS Logs
+        </h3>
+        <a asp-controller="Admin" asp-action="Dashboard">
+            <button class="bg-white px-3 fw-bold">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="recordList">
+        <form id="filterFormSMSLogs">
+            <div class="row">
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <select asp-for="Role" class="form-select" id="requestStatus">
+                        <option value="">All</option>
+                        @foreach (var item in Model.Roles)
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    </select>
+                    <label for="requestStatus">Request Status</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Name" class="form-control" id="name" placeholder="Name" />
+                    <label for="name">Receiver Name</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Phone" class="form-control" id="phone" placeholder="Phone" />
+                    <label for="phone">Phone</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="CreatedDate" class="form-control" id="cratedDate" placeholder="CratedDate"
+                        type="date" />
+                    <label for="startDate">Crated Date</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="SendDate" class="form-control" id="sendDate" placeholder="SendDate" type="date" />
+                    <label for="sendDate">Send Date</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end align-items-center mt-2 mb-2">
+                <button class="bg-white px-3 me-3 fw-bold resetSMSLogs" type="button">
+                    Clear
+                </button>
+                <button class="px-3 cloredButton text-white fw-bold searchButtonSMSLogs" type="button">
+                    Search
+                </button>
+            </div>
+        </form>
+        <div class="tableData">
+            <partial name="_SmsLogTable" model="@Model.EmailSmsLogTableDatas"></partial>
+        </div>
+    </div>
+</div>

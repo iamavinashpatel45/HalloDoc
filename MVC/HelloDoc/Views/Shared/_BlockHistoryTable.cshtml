@@ -1,0 +1,135 @@
+﻿@model Services.ViewModels.Admin.BlockHistoryTable
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="bg-transparent">
+                    Patient Name
+                </th>
+                <th class="bg-transparent">
+                    Phone Number
+                </th>
+                <th class="bg-transparent">
+                    Email
+                </th>
+                <th class="bg-transparent">
+                    Crated Date
+                </th>
+                <th class="bg-transparent">
+                    Notes
+                </th>
+                <th class="bg-transparent">
+                    Is Active
+                </th>
+                <th class="bg-transparent">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BlockHistoryTableDatas)
+            {
+                <tr class="align-middle bg-white">
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.CratedDate.ToString("MMM dd,yy")
+                    </td>
+                    <td>
+                        @item.Notes
+                    </td>
+                    <td>
+                        <input type="checkbox" checked="@item.IsActive"/>
+                    </td>
+                    <td>
+                        <button class="bg-white px-3 fw-bold" onclick="unblockRequest(@item.RequestId)">
+                            Unblock
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@foreach (var item in Model.BlockHistoryTableDatas)
+{
+    <div class="accordion accordion-flush w-100" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button collapsed h-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-@item.RequestId" aria-controls="panelsStayOpen-collapseOne">
+                    <div class="d-flex flex-column">
+                        <span>@item.Name</span>
+                        <span>@item.Email</span>
+                    </div>
+                </button>
+                <hr class="h1">
+            </h2>
+            <div id="panelsStayOpen-@item.RequestId" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body row">
+                    <div>
+                        <i class="bi bi-telephone rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Phone : @item.Phone
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-geo-alt rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Crated Date : @item.CratedDate.ToString("MMM dd,yy")
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-journal-text rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Notes : @item.Notes
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-check-lg rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Is Active : <input type="checkbox" checked="@item.IsActive" />
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center mb-2">
+                        <button class="bg-white px-3 fw-bold" onclick="unblockRequest(@item.RequestId)">
+                            Unblock
+                        </button>
+                    </div>
+                    <hr class="h1">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (Model != null)
+{
+    <div class="d-flex justify-content-between">
+        Showing @Model.StartRange to @Model.EndRange of @Model.TotalRequests entries
+        <div class="d-flex">
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getBlckHistoryData(1)" disabled=@(!Model.IsFirstPage)>
+                «
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getBlckHistoryData(@(Model.PageNo-1))" disabled=@(!Model.IsPreviousPage)>
+                ‹
+            </button>
+            <button class="border-1 rounded-0 mx-2 px-3 currentPage bg-white">
+                @Model.PageNo
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getBlckHistoryData(@(Model.PageNo+1))"
+                    disabled=@(!Model.IsNextPage)>
+                ›
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="navigateToLastPageBlockHistory(@Model.TotalRequests)" disabled=@(!Model.IsLastPage)>
+                »
+            </button>
+        </div>
+    </div>
+}

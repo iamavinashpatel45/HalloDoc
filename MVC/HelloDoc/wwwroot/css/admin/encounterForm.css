@@ -1,0 +1,63 @@
+﻿body {
+    background-color: #dcdbdb;
+}
+
+#back-box {
+    color: cadetblue;
+    font-size: 20px;
+    width: 100px;
+}
+
+input {
+    height: 58px;
+}
+
+form {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+label,
+.form-control {
+    margin-top: 2vh;
+}
+
+button {
+    height: 50px;
+    border-radius: 10px;
+    border: 0.5px solid;
+    margin-top: 5px;
+    border-color: cadetblue;
+}
+
+.saveButton {
+    background-color: cadetblue;
+}
+
+.finalizeButton {
+    border: none;
+    background-color: rgb(216 81 231);
+}
+
+.headingText,
+.cancleButton {
+    color: cadetblue;
+}
+
+textarea{
+    resize: none;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    font-weight: 600;
+    color: #0a8185;
+    opacity: 1;
+}

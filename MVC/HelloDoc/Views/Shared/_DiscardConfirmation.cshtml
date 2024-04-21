@@ -1,0 +1,21 @@
+﻿<link href="~/css/admin/_requestPopUp.css" rel="stylesheet" />
+<script src="~/js/Admin/requestPopUp.js"></script>
+<div class="modal" tabindex="-1" id="discard">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column align-items-center p-5 text-center">
+                <h5 class="mb-2"> Unsaved Changes</h5>
+                The data has been modified, but not saved. Are you sure you wish to discard the changes?
+                <input readonly class="d-none patientRequestId" type="text" />
+                <div class="d-flex mt-3 mb-2">
+                    <button type="button" class="btn mx-2 px-4" id="conformButton" onclick="clearCase()">
+                        Yes
+                    </button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="closeButton">
+                        No
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

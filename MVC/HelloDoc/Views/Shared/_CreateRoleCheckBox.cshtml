@@ -1,0 +1,13 @@
+﻿@model Services.ViewModels.Admin.RolesCheckBox
+
+@foreach (var item in Model.Menus)
+{
+    <div class="form-check form-check-inline">
+        <input name="SelectedMenus" class="form-check-input" type="checkbox" value="@item.Key"
+                                                checked="@Model.SelectedMenusForLoadData.Contains(@item.Key)" onchange="changeCheckBox(this)">
+        <label class="form-check-label" for="r-1">
+            @item.Value
+        </label>
+    </div>
+}
+

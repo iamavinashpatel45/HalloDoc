@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_PatientLayout";
+    ViewData["Title"] = "Submit Request";
+    ViewBag.CssFile = "/css/patient/submitRequest.css";
+    ViewBag.Header = "_RequestHeader";
+}
+
+
+
+<div class="d-flex align-items-center flex-column">
+    <a id="back-box" asp-controller="Patient" asp-action="PatientSite">
+        <i class="bi bi-chevron-left"> </i>
+        Back
+    </a>
+    <span id="heading-text"> I am a... </span>
+    <a asp-controller="Patient" asp-action="PatientRequest">
+        <div class="button" id="patient-box">PATIENT</div>
+    </a>
+    <a asp-controller="Patient" asp-action="FamilyFriendRequest">
+        <dic class="button" id="family-friend-box">FAMILY/FRIEND</dic>
+    </a>
+    <a asp-controller="Patient" asp-action="ConciergeRequest">
+        <div class="button" id="concierge-box">CONCIERGE</div>
+    </a>
+    <a asp-controller="Patient" asp-action="BusinessRequest">
+        <div class="button" id="business-box">BUSINESS PARTNERS</div>
+    </a>
+</div>
+<div class="position-fixed vw-100 bottom-0">
+    <partial name="_RequestFooter" />
+</div>

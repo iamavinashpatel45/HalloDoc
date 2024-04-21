@@ -1,0 +1,69 @@
+﻿<link href="~/css/admin/_requestPopUp.css" rel="stylesheet" />
+<div class="modal" tabindex="-1" id="viewShiftDetails">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">View Shift</h5>
+                <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle-fill h3 modal-title"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-floating">
+                        <input class="form-control" id="region" placeholder="Region" disabled readonly/>
+                        <label for="region">Region</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating">
+                        <input class="form-control" id="Name" placeholder="Name" disabled readonly />
+                        <label for="Name">Physician</label>
+                    </div>
+                </div>
+                <fieldset disabled id="editShiftDetils">
+                    <div class="row">
+                        <div class="form-floating">
+                            <input class="form-control" id="shiftDateViewShift" type="date" placeholder="ShiftDate" />
+                            <label id="date-picker" for="shiftDateViewShift">Shift Date</label>
+                            <span class="text-danger mb-3" id="shiftDateViewShiftValidation"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-floating col-6">
+                            <input class="form-control" id="startTimeViewShift" type="time" placeholder="StartTime" step="1" />
+                            <label for="startTimeViewShift">Start Time</label>
+                            <span class="text-danger mb-3" id="startTimeViewShiftValidation"></span>
+                        </div>
+                        <div class="form-floating col-6">
+                            <input class="form-control" id="endTimeViewShift" type="time" placeholder="EndTime" step="1" />
+                            <label for="endTimeViewShift">End Time</label>
+                            <span class="text-danger mb-3" id="endTimeViewShift"></span>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="d-flex justify-content-end mt-3 mb-1">
+                    <div>
+                        <button type="button" class="btn editbutton px-3" id="conformButton">
+                            Edit
+                        </button>
+                    </div>
+                    <div class="edit">
+                        <button type="button" class="btn mx-2 conformButton" id="conformButton">
+                            Conform
+                        </button>
+                        <button type="button" class="btn cancleEdit" id="closeButton">
+                            Cancel
+                        </button>
+                    </div>
+                    <button type="button" class="btn mx-2 text-white bg-danger" id="deletebutton">
+                        Delete
+                    </button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="closeButton">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

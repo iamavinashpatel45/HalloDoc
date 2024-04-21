@@ -1,0 +1,50 @@
+﻿@model Services.ViewModels.Admin.GeneratePdf
+
+@{
+    int count = 0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="mx-5">
+    <div class="text-center h3 mt-3">
+        Medical Report
+    </div>
+    <div class="mt-2 h4">
+        Patient Name : @Model.EncounterForm.FirstName @Model.EncounterForm.LastName
+    </div>
+    <div class="mt-2 h4">
+        BirthDate : @Model.EncounterForm.BirthDate
+    </div>
+    <div class="mt-2 h4">
+        Address : @Model.EncounterForm.Location
+    </div>
+    <div class="table-responsive mt-3">
+        <table class="table table-bordered">
+            <tbody>
+                @foreach (var item in Model.PropertyList)
+                {
+                    if (count > 8)
+                    {
+                        <tr>
+                            <td class="col-2 h5">
+                                @item.Key
+                            </td>
+                            <td class="col-10">
+                                @item.Value
+                            </td>
+                        </tr>
+                    }
+                    count++;
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

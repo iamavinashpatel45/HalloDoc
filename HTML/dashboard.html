@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dashboard</title>
+        <link href="css/dashboardCss.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" src="js/custom.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Roboto'
+            rel='stylesheet'>
+    </head>
+    <body onload="firstTimeLoadPage()">
+        <!-- header -->
+        <header class="container-fluid">
+            <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                <button onclick="slidebar()" id="header-bar-button">
+                    <img id="menu-bar" src="images/menu-bar.svg">
+                </button>
+                <button onclick="window.location.href='index.html'"
+                    id="header-bar-button">
+                    <img id="header-logo" src="images/header-logo.svg">
+                </button>
+            </div>
+            <div class="col-xxl-7 col-xl-6 col-lg-5 col-md-4 col-sm-2">
+                <img id="search-icon" src="images/search-icon.svg">
+                <span id="search-text">
+                    Search
+                </span>
+            </div>
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-5"
+                id="header-rightside">
+                <img id="notification-icon" src="images/notification-icon.svg">
+                <img src="images/profile.png">
+                <span id="profile">John Doe</span>
+                <img id="profile" src="images/downward-arrow.svg">
+            </div>
+        </header>
+        <div class="body">
+            <!-- left side-->
+            <div id="sidebar">
+                <div class="left-side" id="dashboard">
+                    <span class="opestions">
+                        <img class="left-side-image"
+                            src="images/dashboard-active.svg">
+                    </span>
+                    <span>
+                        Dashboard
+                    </span>
+                </div>
+                <button class="left-side"
+                    onclick="window.location.href='innerpage.html';">
+                    <span class="opestions">
+                        <img class="left-side-image"
+                            src="images/graph-default.svg">
+                    </span>
+                    <span>
+                        Analysis
+                    </span>
+                </button>
+                <div class="left-side">
+                    <span class="opestions">
+                        <img class="left-side-image"
+                            src="images/inbox-default.svg">
+                    </span>
+                    <span>
+                        Index
+                    </span>
+                </div>
+                <div class="left-side">
+                    <span class="opestions">
+                        <img class="left-side-image"
+                            src="images/clock-default.svg">
+                    </span>
+                    <span>
+                        History
+                    </span>
+                </div>
+                <div class="left-side">
+                    <span class="opestions">
+                        <img class="left-side-image"
+                            src="images/user-default.svg">
+                    </span>
+                    <span>
+                        User
+                    </span>
+                </div>
+                <div class="left-side">
+                    <span class="opestions">
+                        <img class="left-side-image"
+                            src="images/maintenance-default.svg">
+                    </span>
+                    <span>
+                        Maintenance
+                    </span>
+                </div>
+                <div class="left-side">
+                    <span class="opestions">
+                        <img class="left-side-image"
+                            src="images/setting-default.svg ">
+                    </span>
+                    <span>
+                        Setting
+                    </span>
+                </div>
+            </div>
+            <!-- right side-->
+            <div id="right-side">
+                <span id="dashboard-text">
+                    Dashboard
+                </span>
+                <!-- functions -->
+                <div class="container-fluid" id="function">
+                    <div class="row">
+                        <div
+                            class="functions col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-4 ">
+                            <img class="function-images" src="images/star.svg">
+                            <div class="function-data">
+                                <b class="function-text-size">
+                                    23,453
+                                </b>
+                                <span>
+                                    New Products
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="functions col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-4 ">
+                            <img class="function-images"
+                                src="images/new-product.svg">
+                            <div class="function-data">
+                                <b class="function-text-size">
+                                    2345
+                                </b>
+                                <span>
+                                    Added Products
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="functions col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                            <img class="function-images"
+                                src="images/total-product.svg">
+                            <div class="function-data">
+                                <b class="function-text-size">
+                                    32,456
+                                </b>
+                                <span>
+                                    Total Products
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="functions col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                            <img class="function-images"
+                                src="images/dollar-filled.svg">
+                            <div class="function-data">
+                                <b class="function-text-size">
+                                    5678
+                                </b>
+                                <span>
+                                    Todays Sale
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="functions col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                            <img class="function-images"
+                                src="images/dollar-filled.svg">
+                            <div class="function-data">
+                                <b class="function-text-size">
+                                    3,33,543
+                                </b>
+                                <span>
+                                    Total Sale
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- graphs and chart -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- graph -->
+                        <div
+                            class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8"
+                            id="graph">
+                            <div>
+                                <!-- graph upper side -->
+                                <div id="graph-text">
+                                    <b class="diffrent-text">
+                                        Sale
+                                    </b>
+                                    <div>
+                                        Weekly
+                                        <span id="monthly-text">
+                                            monthly
+                                        </span>
+                                        <span id="red-text">
+                                            Yearly
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- graph lower side only image-->
+                                <img src="images/data-graph.png" width="100%">
+                            </div>
+                        </div>
+                        <!-- chart -->
+                        <div
+                            class="col-sm-8 col-md-6 col-lg-6 col-xl-8 col-xxl-3"
+                            id="chart">
+                            <!-- chart upper side text -->
+                            <b class="diffrent-text">
+                                Sales by Contry
+                            </b>
+                            <!-- chart -->
+                            <div id="chart-image">
+                                <img src="images/pie-chart.svg" alt>
+                            </div>
+                            <!-- chart lower side text -->
+                            <div>
+                                <div id="country-name">
+                                    <div>
+                                        <div>
+                                            <img
+                                                src="images/radio-checked-icon.svg"
+                                                alt width="35px"> United States
+                                            of America
+                                        </div>
+                                        <div>
+                                            <img
+                                                src="images/radio-checked-icon.svg"
+                                                alt width="35px"> Russia
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <img
+                                                src="images/radio-checked-icon.svg"
+                                                alt width="35px"> Canada
+                                        </div>
+                                        <div>
+                                            <img
+                                                src="images/radio-checked-icon.svg"
+                                                alt width="35px"> India
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- invoice -->
+                <div id="invoices" class="table">
+                    <div id="invoice-upper-text">
+                        <b class="diffrent-text">
+                            Invoices
+                        </b>
+                        <span id="view-all">
+                            View All
+                        </span>
+                    </div>
+                    <div class="table" id="row-heigth">
+                        <table class="table">
+                            <tr>
+                                <th class="table-header-text">
+                                    INVOICE
+                                </th>
+                                <th class="table-header-text">
+                                    COMPANY NAME
+                                </th>
+                                <th class="table-header-text">
+                                    EMAIL
+                                </th>
+                                <th class="table-header-text">
+                                    DUE DATE
+                                </th>
+                                <th class="table-header-text">
+                                    STATUS
+                                </th>
+                                <th class="table-header-text">
+                                    AMOUNT
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    651535
+                                </td>
+                                <td>
+                                    Public Adjusting Firm
+                                </td>
+                                <td>
+                                    georgia.young@example.com
+                                </td>
+                                <td>
+                                    24 May, 2020
+                                </td>
+                                <td>
+                                    <div class="green-box">
+                                        Paid
+                                    </div>
+                                </td>
+                                <td>
+                                    $47,800
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    558612
+                                </td>
+                                <td>
+                                    Otder
+                                </td>
+                                <td>
+                                    jessica.hanson@example.com
+                                </td>
+                                <td>
+                                    24 May, 2020
+                                </td>
+                                <td>
+                                    <div class="green-box">
+                                        Paid
+                                    </div>
+                                </td>
+                                <td>
+                                    $98,000
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    558612
+                                </td>
+                                <td>
+                                    Vender
+                                </td>
+                                <td>
+                                    alma.lawson@example.com
+                                </td>
+                                <td>
+                                    8 Sep, 2020
+                                </td>
+                                <td>
+                                    <div class="green-box">
+                                        Paid
+                                    </div>
+                                </td>
+                                <td>
+                                    $20,900
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    558612
+                                </td>
+                                <td>
+                                    Property Management Company
+                                </td>
+                                <td>
+                                    kenzi.lawson@example.com
+                                </td>
+                                <td>
+                                    22 Oct, 2020
+                                </td>
+                                <td>
+                                    <div class="green-box">
+                                        Paid
+                                    </div>
+                                </td>
+                                <td>
+                                    $10,570
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    651535
+                                </td>
+                                <td>
+                                    Subcontractor Company
+                                </td>
+                                <td>
+                                    jackson.graham@example.com
+                                </td>
+                                <td>
+                                    1 Feb, 2020
+                                </td>
+                                <td>
+                                    <div class="red-box">
+                                        Faild
+                                    </div>
+                                </td>
+                                <td>
+                                    $10,200
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    653518
+                                </td>
+                                <td>
+                                    Mortgage Company
+                                </td>
+                                <td>
+                                    felicia.reid@example.com
+                                </td>
+                                <td>
+                                    22 Oct, 2020
+                                </td>
+                                <td>
+                                    <div class="gray-box">
+                                        Pending
+                                    </div>
+                                </td>
+                                <td>
+                                    $12,600
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    487441
+                                </td>
+                                <td>
+                                    TPA
+                                </td>
+                                <td>
+                                    dolores.chambers@example.com
+                                </td>
+                                <td>
+                                    21 Sep, 2020
+                                </td>
+                                <td>
+                                    <div class="green-box">
+                                        Paid
+                                    </div>
+                                </td>
+                                <td>
+                                    $11,170
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    267400
+                                </td>
+                                <td>
+                                    Fire Department
+                                </td>
+                                <td>
+                                    nevaeh.simmons@example.com
+                                </td>
+                                <td>
+                                    17 Oct, 2020
+                                </td>
+                                <td>
+                                    <div class="red-box">
+                                        Faild
+                                    </div>
+                                </td>
+                                <td>
+                                    $28,000
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    449003
+                                </td>
+                                <td>
+                                    Insurance Carrier
+                                </td>
+                                <td>
+                                    curtis.weaver@example.com
+                                </td>
+                                <td>
+                                    21 Sep, 2020
+                                </td>
+                                <td>
+                                    <div class="green-box">
+                                        Paid
+                                    </div>
+                                </td>
+                                <td>
+                                    $10,000
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

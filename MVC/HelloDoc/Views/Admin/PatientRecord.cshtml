@@ -1,0 +1,27 @@
+﻿@model Services.ViewModels.Admin.PatientRecord
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Patient Record";
+    ViewBag.JsFile = "/js/Admin/record.js";
+    ViewBag.CssFile = "/css/Admin/records.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+        <h3>
+            Patient Record
+        </h3>
+        <a asp-controller="Admin" asp-action="PatientHistory">
+            <button class="bg-white px-3 fw-bold">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="recordList">
+        <partial name="_PatientRecordTable" model="@Model"></partial>
+    </div>
+</div>

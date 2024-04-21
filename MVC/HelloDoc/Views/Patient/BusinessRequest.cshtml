@@ -1,0 +1,186 @@
+﻿@model Services.ViewModels.AddBusinessRequest
+
+@{
+    Layout = "_PatientLayout";
+    ViewData["Title"] = "Business Request";
+    ViewBag.JsFile = "/js/request.js";
+    ViewBag.CssFile = "/css/patient/businessRequest.css";
+    ViewBag.Header = "_RequestHeader";
+}
+
+<partial name="_WarningPopUp" />
+<div id="main-body">
+    <div class="d-flex justify-content-end container">
+        <a id="back-box" asp-controller="Patient" asp-action="SubmitRequest">
+            <i class="bi bi-chevron-left"> </i>
+            Back
+        </a>
+    </div>
+    <form asp-controller="Patient" asp-action="BusinessRequest" enctype="multipart/form-data" autocomplete="off">
+        <div class="container" id="form">
+            <h5 class="fw-semibold">Business Information</h5>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="BusinessFirstName" class="form-control" id="firstName"
+                        placeholder="BusinessFirstName" />
+                    <label for="firstName">Your First Name</label>
+                    <span asp-validation-for="BusinessFirstName" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="BusinessLastName" class="form-control" id="lastName"
+                        placeholder="BusinessLastName" />
+                    <label for="lastName">Your Last Name</label>
+                    <span asp-validation-for="BusinessLastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="BusinessMobile" class="form-control" id="phone2" type="tel"
+                        placeholder="BusinessMobile" />
+                    <span asp-validation-for="BusinessMobile" class="text-danger"></span>
+                    <!-- <label for="phone">Phone Number</label> -->
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="BusinessEmail" class="form-control" id="f-email" placeholder="BusinessEmail" />
+                    <label for="f-email">Email</label>
+                    <span asp-validation-for="BusinessEmail" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Business" class="form-control" id="business-name" placeholder="Business" />
+                    <span asp-validation-for="Business" class="text-danger"></span>
+                    <label for="business-name">
+                        business/property Name
+                    </label>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="CaseNumber" class="form-control" id="case-num" placeholder="CaseNumber" />
+                    <label for="case-num">Case Number(Optional)</label>
+                    <span asp-validation-for="CaseNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <h5 class="fw-semibold mt-4">Patient Information</h5>
+            <div class="row">
+                <div class="form-floating">
+                    <textarea asp-for="Symptoms" class="form-control h-75" id="orderDetils" placeholder="orderDetils"
+                        rows="3"></textarea>
+                    <label for="orderDetils">Enter Brief Details Of Symptoms(Optional)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="FirstName" class="form-control" id="first-name" placeholder="FirstName" />
+                    <label for="first-name">First Name</label>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="LastName" class="form-control" id="last-name" placeholder="LastName" />
+                    <label for="last-name">Last Name</label>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input class="form-control" asp-for="BirthDate" id="date" type="date" placeholder="BirthDate" />
+                    <label id="date-picker" for="date">Date of Birth</label>
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+            </div>
+            <h5 class="fw-semibold mt-4">Patient Contact Information</h5>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Email" class="form-control" id="email" type="email" onfocusout="checkEmail(this)"
+                        placeholder="Email" />
+                    <label for="email">Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Mobile" class="form-control" id="phone1" type="tel" placeholder="Mobile" />
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                    <!-- <label for="phone">Phone Number</label> -->
+                </div>
+            </div>
+            <div class="row" id="input-password">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Password" class="form-control" id="password" type="password" placeholder="Password"
+                        autocomplete="new-password" />
+                    <label for="password">Password</label>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="ConformPassword" class="form-control" id="conform" type="password"
+                        placeholder="conform" />
+                    <label for="conform">Conform Password</label>
+                    <span asp-validation-for="ConformPassword" class="text-danger"></span>
+                </div>
+            </div>
+            <h5 class="fw-semibold mt-4">Patient Location</h5>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Street" class="form-control" id="street" placeholder="street" />
+                    <label for="street">Street</label>
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="City" class="form-control" id="city" placeholder="city" />
+                    <label for="city">City</label>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="State" class="form-control" id="state" placeholder="state" />
+                    <label for="state">State</label>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="ZipCode" class="form-control" id="zip-code" placeholder="zip-code" />
+                    <label for="zip-code">Zip-Code</label>
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="House" class="form-control" id="house" placeholder="house" />
+                    <label for="house">house(Optional)</label>
+                    <span asp-validation-for="House" class="text-danger"></span>
+                </div>
+            </div>
+            <h5 class="fw-semibold mt-4">
+                (Optional)Upload Photo or Document
+            </h5>
+            <div class="input-group">
+                <input class="form-control" placeholder="Select File" type="file" id="file-picker" asp-for="File" />
+                <button class="button fs-5" type="button">
+                    <i class="bi bi-cloud-arrow-up-fill"></i>
+                    Upload
+                </button>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="bottom-button" id="submit-button">
+                    Submit
+                </button>
+                <button class="bottom-button" id="cancel-button" type="reset">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<partial name="_RequestFooter" />
+<script>
+    const phoneInputField = document.getElementById("phone1");
+    window.intlTelInput(phoneInputField, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+    const phoneInputField2 = document.getElementById("phone2");
+    window.intlTelInput(phoneInputField2, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>

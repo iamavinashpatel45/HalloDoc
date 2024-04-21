@@ -1,0 +1,287 @@
+﻿body {
+    background-color: #f9f9f9;
+}
+
+thead {
+    background-color: #f9f9f9;
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: white;
+}
+
+.notyf__dismiss-btn{
+    border-radius: 5px;
+}
+
+a {
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+select,
+input {
+    width: 300px;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+input[type=search] {
+    outline-offset: 0px;
+}
+
+button {
+    border-radius: 10px;
+    border: 0.5px solid;
+    margin-top: 5px;
+}
+
+ a:hover,
+ button:hover:enabled {
+    font-weight: bold;
+    border-color: black;
+    cursor: pointer;
+ }
+
+button:disabled{
+    color: black;
+}
+
+.mapButton {
+    width: 150px;
+}
+
+.viewcase {
+    width: 150px;
+    position: absolute;
+    z-index: 36;
+    margin-top: -40px;
+    right: 40px;
+}
+
+#newOption {
+    box-shadow: 10px 10px 5px #AAA;
+    background-color: #4c6dcf;
+    color: white;
+    border-color: #1348e8;
+}
+
+#pendingOption {
+    background-color: #e5f2f8;
+    color: #5ea3b0;
+    border-color: #c9ebfb;
+}
+
+#activeOption {
+    background-color: #e9f0e8;
+    color: #4e7d4f;
+    border-color: #dcfbdc;
+}
+
+#concludeOption {
+    background-color: #f7e6ee;
+    color: #a84281;
+    border-color: #e9e0e5;
+}
+
+#tocloseOption {
+    background-color: #e5eef5;
+    color: #1a6eb7;
+    border-color: #e9f2f5;
+}
+
+#unpaidOption {
+    background-color: #efeef4;
+    color: #9674ad;
+    border-color: #fbf5fd;
+}
+
+ #newOption:hover,
+ #activeOption:hover,
+ #concludeOption:hover,
+ #tocloseOption:hover,
+ #unpaidOption:hover,
+ #pendingOption:hover {
+     box-shadow: 10px 10px 5px #AAA;
+ }
+
+.middleOptionButtons {
+    border-color: #1db5d0;
+    background-color: #1db5d0;
+    padding: 10px 15px;
+    color: white;
+}
+
+/*.accordion {
+    display: none;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}*/
+
+#allButton {
+    height: 40px;
+}
+
+#mainbody{
+    margin: 15px;
+}
+
+.dropdown-toggle::after,
+.accordion,
+.accordion-button::after,
+.buttonHr,
+.dt-column-order,
+.dt-length,
+.dt-search,
+#close,
+#unpaid, 
+#conclude, 
+#active, 
+#pending{
+    display: none;
+}
+
+/*.accordion-button::after,
+.buttonHr,
+.dt-column-order,
+.dt-length,
+.dt-search {
+    display: none;
+}*/
+
+.accordion-button:not(.collapsed) {
+    color: White;
+    font-weight: normal;
+}
+
+.accordion-button[aria-expanded="true"] {
+    background-color: #dae8eb;
+    border: none;
+    color: black;
+    box-shadow: none;
+    border-radius: 10px;
+    font-weight: normal;
+}
+
+.accordion-flush 
+.accordion-item 
+.accordion-button {
+    border-start-start-radius: 5px;
+    border-start-end-radius: 5px;
+}
+
+.accordion-item {
+    border-radius: 5px;
+}
+
+
+table.dataTable td.dt-type-numeric,
+table.dataTable th.dt-type-numeric {
+    text-align: left;
+}
+
+
+.table-responsive{
+    overflow: inherit;
+}
+
+.careButton {
+    height: 50px;
+    background-color: white;
+}
+
+.activeButton{
+    background-color:cadetblue;
+    color: white;
+}
+
+
+/* -------------------media-queries-------------------*/
+
+@media screen and (max-width:450px) {
+
+    .colorOption{
+        margin: 0px;
+    }
+
+    .requesterButtons,
+    .heading {
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (max-width:576px) {
+    .h5 {
+        font-size: 0.5rem;
+    }
+
+    .colorText {
+        font-size: 12px;
+    }
+
+    .viewcase,
+    .mapButton{
+        width: 120px
+    }
+
+}
+
+@media screen and (min-width:577px) and (max-width:768px) {
+
+    .h5 {
+        font-size: 0.7rem;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+
+
+    .buttonLogo {
+        display: none;
+    }
+
+    .h3 {
+        font-size: calc(1rem + .6vw);
+    }
+
+    #headingText {
+        font-size: calc(0.7rem + .6vw);
+    }
+
+}
+
+@media screen and (max-width:615px) {
+
+    select,
+    input {
+        width: 100%;
+    }
+
+    .colorOption {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .table-responsive {
+        display: none;
+    }
+
+    .accordion {
+        display: block;
+    }
+}
+
+@media screen and (max-width:1200px) {
+
+    .buttonText {
+        display: none;
+    }
+}

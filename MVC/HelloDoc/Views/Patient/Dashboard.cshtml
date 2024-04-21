@@ -1,0 +1,133 @@
+﻿@model List<Services.ViewModels.Dashboard>
+
+@{
+    Layout = "_PatientLayout";
+    ViewData["Title"] = "Business Request";
+    ViewBag.JsFile = "/js/patient/dashboard.js";
+    ViewBag.CssFile = "/css/patient/dashboard.css";
+    ViewBag.Header = "_PatientDashboardHeader";
+    List<String> status = new List<string>() {"Blocked", "Unassigned", "Accepted", "Cancelled", "MDEnRoute","MDOnSite", "Conclude", 
+                                     "Closed", "Locked", "Declined", "Consult", "Clear", "CancelledByProvider", "CCUploadedByClient", "CCApprovedByAdmin" };
+    List<String> months = new List<String>() { "", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct","Nov", "Dec" };
+}
+
+
+<div class="modal" tabindex="-1" id="createNewRequest">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Request</h5>
+                <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle-fill h3 modal-title"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                Here, I Want to create new request for....
+                <div class="d-flex justify-content-end mt-2">
+                    <button class="p-sm-3 mx-3 forMe" onclick="changeRadio(true)">Me</button>
+                    <button class="forSomeOne" onclick="changeRadio(false)">Some One Else</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a asp-controller="Patient" asp-action="RequestForMe" id="forMe">
+                    <button type="button" class="btn btn-primary">Continue</button>
+                </a>
+                <a asp-controller="Patient" asp-action="RequestForSomeOne" id="forSomeOne">
+                    <button type="button" class="btn btn-primary">Continue</button>
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-content" id="dashboard_content">
+    <span class="h3">
+        Medical History
+    </span>
+    <div class="d-flex flex-column align-items-end" id="history">
+        <button id="new-request" data-bs-target="#createNewRequest" data-bs-toggle="modal">
+            <span id="button-text">
+                Create New Request
+            </span>
+            <i id="button-icon" class="bi bi-plus"> </i>
+        </button>
+        <!-- table -->
+        <div class="table-responsive w-100">
+            <table class="table">
+                <thead class="table-active">
+                    <tr>
+                        <th class="col-2">
+                            Created Date
+                        </th>
+                        <th class="col-2">
+                            Current Status
+                        </th>
+                        <th class="col-8 ">
+                            Document
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @months[int.Parse(@item.StrMonth.ToString())] @item.IntDate, @item.IntYear
+                            </td>
+                            <td>
+                                @status[int.Parse(@item.Status.ToString())]
+                            </td>
+                            <td>
+                                @{
+                                    if (@item.Document > 0)
+                                    {
+                                        <button id="document" onclick="NavigatToViewDocument(@item.RequestId)">
+                                            (@item.Document) Document
+                                        </button>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- table(mobile-view) -->
+        <div class="accordion accordion-flush w-100" id="accordionFlushExample">
+            @foreach (var item in Model)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-@item.RequestId" aria-controls="panelsStayOpen-collapseOne">
+                            <i class="bi bi-clock me-2"></i>
+                            <b class="me-2">Created Date: </b> @months[int.Parse(@item.StrMonth.ToString())] @item.IntDate,
+                            @item.IntYear
+                        </button>
+                    </h2>
+                    <div id="collapse-@item.RequestId" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <div>
+                                <i class="bi bi-person-circle me-2"></i>
+                                <b class="me-2">Provider: -</b>
+                            </div>
+                            <div>
+                                <i class="bi bi-check-circle me-2"></i>
+                                <b class="me-2">Current Status: - </b> @status[int.Parse(@item.Status.ToString())]
+                                @{
+                                    if (@item.Document > 0)
+                                    {
+                                        <button id="document" onclick="NavigatToViewDocument(@item.RequestId)">
+                                            (@item.Document) Document
+                                        </button>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

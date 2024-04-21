@@ -1,0 +1,122 @@
+﻿@model Services.ViewModels.Admin.PatientHistoryTable
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="bg-transparent">
+                    First Name
+                </th>
+                <th class="bg-transparent">
+                    Last Name
+                </th>
+                <th class="bg-transparent">
+                    Email
+                </th>
+                <th class="bg-transparent">
+                    Phone
+                </th>
+                <th class="bg-transparent">
+                    Address
+                </th>
+                <th class="bg-transparent">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PatientHistoryTableDatas)
+            {
+                <tr class="align-middle bg-white">
+                    <td>
+                        @item.FirstName
+                    </td>
+                    <td>
+                        @item.LastName
+                    </td>
+                    <td>
+                       @item.Email
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        <button class="bg-white px-3 fw-bold" onclick="openRecord(@item.UserId)">
+                            Explore
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@foreach (var item in Model.PatientHistoryTableDatas)
+{
+    <div class="accordion accordion-flush w-100" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button collapsed h-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-@item.UserId" aria-controls="panelsStayOpen-collapseOne">
+                    @item.FirstName @item.LastName
+                </button>
+                <hr class="h1">
+            </h2>
+            <div id="panelsStayOpen-@item.UserId" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body row">
+                    <div>
+                        <div class="mt-4">
+                            <i class="bi bi-envelope rounded-circle border border-1 border-primary p-2"></i>
+                            <span class="h6">
+                                Email : @item.Email
+                            </span>
+                        </div>
+                        <div class="mt-4">
+                            <i class="bi bi-telephone rounded-circle border border-1 border-primary p-2"></i>
+                            <span class="h6">
+                                Phone : @item.Phone
+                            </span>
+                        </div>
+                        <div class="mt-4">
+                            <i class="bi bi-geo-alt rounded-circle border border-1 border-primary p-2"></i>
+                            <span class="h6">
+                                Address : @item.Address
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center mb-2">
+                        <button class="bg-white px-3 fw-bold" onclick="openRecord(@item.UserId)">
+                            Explore
+                        </button>
+                    </div>
+                    <hr class="h1">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (Model != null)
+{
+    <div class="d-flex justify-content-between">
+        Showing @Model.StartRange to @Model.EndRange of @Model.TotalRequests entries
+        <div class="d-flex">
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getPatientHistory(1)" disabled=@(!Model.IsFirstPage)>
+                «
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getPatientHistory(@(Model.PageNo-1))" disabled=@(!Model.IsPreviousPage)>
+                ‹
+            </button>
+            <button class="border-1 rounded-0 mx-2 px-3 currentPage bg-white">
+                @Model.PageNo
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getPatientHistory(@(Model.PageNo+1))"
+                    disabled=@(!Model.IsNextPage)>
+                ›
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="navigateToLastPage(@Model.TotalRequests)" disabled=@(!Model.IsLastPage)>
+                »
+            </button>
+        </div>
+    </div>
+}

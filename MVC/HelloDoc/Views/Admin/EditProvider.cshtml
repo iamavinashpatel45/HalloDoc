@@ -1,0 +1,474 @@
+﻿@model Services.ViewModels.Admin.EditProvider
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    string role = httpContextAccessor.HttpContext.Session.GetString("role");
+    Layout = $"_{role}Layout";
+    ViewData["Title"] = "Edit Provider";
+    ViewBag.JsFile = "/js/Admin/provider.js";
+    ViewBag.CssFile = "/css/Admin/createProvider.css";
+    ViewBag.Header = $"_{role}DashboardHeader";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+        @if(role == "Physician")
+        {
+            <h3>
+                View Profile
+            </h3>
+        }
+        else
+        {
+            <h3>
+                Edit Provider Account
+            </h3>
+        }
+        <a asp-controller="@role" asp-action="Dashboard">
+            <button class="bg-white px-3 fw-bold">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="form">
+        <form id="form1" asp-controller="Admin" asp-action="EditphysicianAccountInformaction">
+            <fieldset disabled id="fieldset1">
+                <h5 class="fw-bold">
+                    Account Informaction
+                </h5>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="UserName" class="form-control" id="userName" placeholder="UserName" />
+                        <label for="userName">User Name</label>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Password" class="form-control" id="pass" placeholder="Password" />
+                        <label for="pass">Password</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <select asp-for="SelectedRole" class="form-select" id="role">
+                            @foreach (var item in Model.Roles)
+                            {
+                                <option value="@item.Key">@item.Value</option>
+                            }
+                        </select>
+                        <label for="role">Role</label>
+                        <span asp-validation-for="SelectedRole" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <select asp-for="Status" class="form-select" id="role">
+                            <option value="0">Pending</option>
+                            <option value="1">Active</option>
+                        </select>
+                        <label for="role">Status</label>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-3 mb-2">
+                <button class="px-3 text-white fw-bold bottomButtons" type="button" id="editbutton1">
+                    Edit
+                </button>
+                <div class="edit" id="edit1">
+                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="submit" id="save1">
+                        Save Changes
+                    </button>
+                    <button class="px-3 bg-white cancleButton fw-bold" type="reset" onclick="" id="cancel1">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form asp-controller="Admin" asp-action="EditphysicianPhysicianInformaction">
+            <h5 class="mt-4">
+                Physician Informaction
+            </h5>
+            <fieldset disabled id="fieldset2">
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="FirstName" class="form-control" id="firstName" placeholder="FirstName" />
+                        <label for="firstName">First Name</label>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="LastName" class="form-control" id="lastName" placeholder="LastName" />
+                        <label for="lastName">Last Name</label>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Email" class="form-control" id="email" placeholder="Email" type="email" />
+                        <label for="email">Email</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Phone" class="form-control" id="phone1" placeholder="Phone" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="MedicalLicance" class="form-control" id="licaence"
+                            placeholder="MedicalLicance" />
+                        <label for="licaence">Medical Licance</label>
+                        <span asp-validation-for="MedicalLicance" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="NpiNumber" class="form-control" id="npi" placeholder="NpiNumber" />
+                        <label for="npi">NPI Number</label>
+                        <span asp-validation-for="NpiNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="SynchronizationEmail" class="form-control" id="email" placeholder="Email"
+                            type="email" />
+                        <label for="email">Synchronization Email</label>
+                        <span asp-validation-for="SynchronizationEmail" class="text-danger"></span>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-lg-6">
+                        @foreach (var item in Model.Regions)
+                        {
+                            <div class="form-check form-check-inline">
+                                <input name="SelectedRegions" class="form-check-input" type="checkbox" value="@item.Key"
+                                    checked=@Model.SelectedRegions.Contains(item.Key)>
+                                <label class="form-check-label" for="r-1">
+                                    @item.Value
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <span asp-validation-for="SelectedRegions" class="text-danger"></span>
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-3 mb-2">
+                <button class="px-3 text-white fw-bold bottomButtons" type="button" id="editbutton2">
+                    Edit
+                </button>
+                <div class="edit" id="edit2">
+                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="submit" id="administratorForm">
+                        Save Changes
+                    </button>
+                    <button class="px-3 bg-white cancleButton fw-bold" type="reset" id="cancel2">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form asp-controller="Admin" asp-action="EditphysicianMailAndBillingInformaction">
+            <h5 class="mt-4">
+                Mailing & Billing Information
+            </h5>
+            <fieldset disabled id="fieldset3">
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Add1" class="form-control" id="address1" placeholder="Add1" />
+                        <label for="address1">Address 1</label>
+                        <span asp-validation-for="Add1" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Add2" class="form-control" id="address2" placeholder="Add2" />
+                        <label for="address2">Address 2</label>
+                        <span asp-validation-for="Add2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="City" class="form-control" id="city" placeholder="City" />
+                        <label for="city">City</label>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <select asp-for="SelectedRegion" class="form-select" id="state">
+                            <option selected value="">State</option>
+                            @foreach (var item in Model.Regions)
+                            {
+                                <option value="@item.Key">@item.Value</option>
+                            }
+                        </select>
+                        <label for="state">State</label>
+                        <span asp-validation-for="SelectedRegion" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Zip" class="form-control" id="zip" placeholder="Zip" />
+                        <label for="zip">Zip</label>
+                        <span asp-validation-for="Zip" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Phone2" class="form-control" id="phone2" placeholder="Mobile" />
+                        <span asp-validation-for="Phone2" class="text-danger"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-3 mb-2">
+                <button class="px-3 text-white fw-bold bottomButtons" type="button" id="editbutton3">
+                    Edit
+                </button>
+                <div class="edit" id="edit3">
+                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="submit" id="administratorForm">
+                        Save Changes
+                    </button>
+                    <button class="px-3 bg-white cancleButton fw-bold" type="reset" id="cancel3">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form enctype="multipart/form-data" asp-controller="Admin" asp-action="EditphysicianProviderProfile">
+            <h5 class="mt-4">
+                Provider Profile
+            </h5>
+            <fieldset disabled id="fieldset4">
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="BusinessName" class="form-control" id="name" placeholder="BusinessName" />
+                        <label for="name">Business Name</label>
+                        <span asp-validation-for="BusinessName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="BusinessWebsite" class="form-control" id="website"
+                            placeholder="BusinessWebsite" />
+                        <label for="website">Business Website</label>
+                        <span asp-validation-for="BusinessWebsite" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 col-lg-6">
+                        <div class="input-group-text border-0 bg-transparent form-floating p-0">
+                            <input asp-for="Photo" class="form-control" placeholder="Select Photo" type="file"
+                                id="file-picker">
+                            <label for="file-picker">Select Photo</label>
+                            <button class="uploadButtons uploadButtonFilepicker text-white fs-5" type="button">
+                                <i class="bi bi-cloud-arrow-up-fill "></i>
+                                Upload
+                            </button>
+                        </div>
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    @if (role == "Admin")
+                    {
+                        <div class="col-xl-6 col-md-6 col-lg-6 d-flex flex-column">
+                            <div class="d-flex">
+                                <div class="input-group-text border-0 bg-transparent form-floating p-0">
+                                    <input asp-for="Signature" class="form-control" placeholder="Select Signature"
+                                           type="file" id="Signature">
+                                    <label for="file-picker">Select Signature</label>
+                                    <button class="uploadButtons uploadButtonFilepicker text-white fs-5" type="button">
+                                        <i class="bi bi-cloud-arrow-up-fill "></i>
+                                        Upload
+                                    </button>
+                                </div>
+                                <button class="px-3 fw-bold bg-white createButton mx-1" type="button">
+                                    Create
+                                </button>
+                            </div>
+                            @if (Model.IsSignature)
+                            {
+                                <div class="mt-2">
+                                    <img src="@Model.SignaturePath" class="border border-1 rounded-3" width="350" />
+                                </div>
+                            }
+                            <div class="edit mt-2 mb-2" id="signaturePad">
+                                <canvas class="border border-1 rounded-3" id="signature-pad" width="350"
+                                        height="200"></canvas>
+                                <div>
+                                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="button"
+                                            id="signatureSave">
+                                        Save
+                                    </button>
+                                    <button class="px-3 bg-white cancleButton fw-bold" type="button" id="signatureClear">
+                                        Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="form-floating">
+                        <textarea asp-for="AdminNotes" class="form-control h-75" id="notes" placeholder="orderDetils"
+                            rows="5"></textarea>
+                        <span asp-validation-for="AdminNotes" class="text-danger"></span>
+                        <label for="notes">Admin Notes</label>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-3 mb-2">
+                <button class="px-3 text-white fw-bold bottomButtons" type="button" id="editbutton4">
+                    Edit
+                </button>
+                <div class="edit" id="edit4">
+                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="submit" id="administratorForm">
+                        Save Changes
+                    </button>
+                    <button class="px-3 bg-white cancleButton fw-bold" type="reset" id="cancel4">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <hr>
+        </form>
+        <form asp-controller="Admin" asp-action="EditphysicianOnbordingInformaction" enctype="multipart/form-data">
+            <h5 class="mt-4">
+                Onbording
+            </h5>
+            <fieldset disabled id="fieldset5">
+                <div class="d-flex uploadFile">
+                    <div class="d-flex align-items-center">
+                        <input asp-for="IsAgreementDoc" type="checkbox" class="me-2" />
+                        <span class="h5">
+                            Independent Contractor Agreement
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-end flex-column">
+                        <div class="input-group">
+                            <input asp-for="AgreementDoc" type="file" class="form-control d-none" id="inputGroupFile01">
+                            <div class="d-flex">
+                                @if (Model.AgreementDocPath != null)
+                                {
+                                    <a href="@Model.AgreementDocPath" target="_blank"
+                                        class="px-3 me-2 text-white fw-bold bottomButtons d-flex justify-content-center align-items-center">
+                                        View
+                                    </a>
+                                }
+                                <label class="input-group-text uploadButton px-3 py-2" for="inputGroupFile01">
+                                    <i class="bi bi-cloud-arrow-up-fill pe-2"></i>
+                                    Upload
+                                </label>
+                            </div>
+                        </div>
+                        <span asp-validation-for="AgreementDoc" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex uploadFile">
+                    <div class="d-flex align-items-center">
+                        <input asp-for="IsBackgroundDoc" type="checkbox" class="me-2" />
+                        <span class="h5">
+                            Background Check
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-end flex-column">
+                        <div class="input-group">
+                            <input asp-for="BackgroundDoc" type="file" class="form-control d-none"
+                                id="inputGroupFile02">
+                            <div class="d-flex">
+                                @if (Model.BackgroundDocPath != null)
+                                {
+                                    <a href="@Model.BackgroundDocPath" target="_blank"
+                                        class="px-3 me-2 text-white fw-bold bottomButtons d-flex justify-content-center align-items-center">
+                                        View
+                                    </a>
+                                }
+                                <label class="input-group-text uploadButton px-3 py-2" for="inputGroupFile02">
+                                    <i class="bi bi-cloud-arrow-up-fill pe-2"></i>
+                                    Upload
+                                </label>
+                            </div>
+                        </div>
+                        <span asp-validation-for="BackgroundDoc" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex uploadFile">
+                    <div class="d-flex align-items-center">
+                        <input asp-for="IsHIPAACompliance" type="checkbox" class="me-2" />
+                        <span class="h5">
+                            HIPAA Compliance
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-end flex-column">
+                        <div class="input-group">
+                            <input asp-for="HIPAACompliance" type="file" class="form-control d-none"
+                                id="inputGroupFile03">
+                            <div class="d-flex">
+                                @if (Model.HIPAACompliancePath != null)
+                                {
+                                    <a href="@Model.HIPAACompliancePath" target="_blank"
+                                        class="px-3 me-2 text-white fw-bold bottomButtons d-flex justify-content-center align-items-center">
+                                        View
+                                    </a>
+                                }
+                                <label class="input-group-text uploadButton px-3 py-2" for="inputGroupFile03">
+                                    <i class="bi bi-cloud-arrow-up-fill pe-2"></i>
+                                    Upload
+                                </label>
+                            </div>
+                        </div>
+                        <span asp-validation-for="HIPAACompliance" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex uploadFile">
+                    <div class="d-flex align-items-center">
+                        <input asp-for="IsNonDisclosureDoc" type="checkbox" class="me-2" />
+                        <span class="h5">
+                            Non-disclosure Agreement
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-end flex-column">
+                        <div class="input-group">
+                            <input asp-for="NonDisclosureDoc" type="file" class="form-control d-none"
+                                id="inputGroupFile04">
+                            <div class="d-flex">
+                                @if (Model.NonDisclosureDocPath != null)
+                                {
+                                    <a href="@Model.NonDisclosureDocPath" target="_blank"
+                                        class="px-3 me-2 text-white fw-bold bottomButtons d-flex justify-content-center align-items-center">
+                                        View
+                                    </a>
+                                }
+                                <label class="input-group-text uploadButton px-3 py-2" for="inputGroupFile04">
+                                    <i class="bi bi-cloud-arrow-up-fill pe-2"></i>
+                                    Upload
+                                </label>
+                            </div>
+                        </div>
+                        <span asp-validation-for="NonDisclosureDoc" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-3 mb-2">
+                <button class="px-3 text-white fw-bold bottomButtons me-2" type="button" id="editbutton5">
+                    Edit
+                </button>
+                <div class="edit" id="edit5">
+                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="submit" id="administratorForm">
+                        Save Changes
+                    </button>
+                    <button class="px-3 bg-white cancleButton fw-bold me-2" type="reset" id="cancel5">
+                        Cancel
+                    </button>
+                </div>
+                @if(role == "Admin")
+                {
+                    <button class="px-3 text-white fw-bold bottomButtons bg-danger border-danger" type="button" id="editbutton1">
+                        Delete Account
+                    </button>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    const phoneInputField1 = document.getElementById("phone1");
+    const phoneInput1 = window.intlTelInput(phoneInputField1, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+    const phoneInputField2 = document.getElementById("phone2");
+    const phoneInput2 = window.intlTelInput(phoneInputField2, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>

@@ -1,0 +1,161 @@
+﻿@model Services.ViewModels.Admin.ViewCase
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    string role = httpContextAccessor.HttpContext.Session.GetString("role");
+    Layout = $"_{role}Layout";
+    ViewData["Title"] = "ViewCase";
+    ViewBag.JsFile = "/js/Admin/ViewCase.js";
+    ViewBag.CssFile = "/css/Admin/ViewCase.css";
+    ViewBag.Header = $"_{role}DashboardHeader";
+    List<String> requesterBgColor = new List<String>() { "", "bg-danger", "bg-success", "bg-warning", "bg-primary", "bg-info" };
+    List<String> requester = new List<String>() { "", "Business", "Patient", "Family", "Concierge", "VIP" };
+}
+
+
+    <partial name="_RequestCancelPopUp" model="@Model.CancelPopup">
+    <div class="tab-content container" id="profile_content">
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+            <div class="d-flex align-items-center">
+                <h3>
+                    View Reservation
+                </h3>
+                <div class="@requesterBgColor[Model.Requester] rounded-pill text-white p-2 px-4 fw-bold mx-1">
+                    @requester[Model.Requester]
+                </div>
+            </div>
+            <a asp-controller="@role" asp-action="Dashboard">
+                <button id="back-box" onclick="history.back()">
+                    <i class="bi bi-chevron-left"> </i>
+                    Back
+                </button>
+            </a>
+        </div>
+        <form class="w-100" enctype="multipart/form-data" id="form" asp-controller="Admin" asp-action="ViewCase" >
+            <input readonly class="form-control d-none" type="text" asp-for="RequestId" />
+            <fieldset disabled id="Fieldset">
+                <h5 class="fw-semibold mb-3">
+                    Patient Information
+                </h5>
+                Conformation Number
+                <h5 class="fw-semibold">
+                    MD48456498456
+                </h5>
+                <div class="row">
+                    <div class="form-floating">
+                        <textarea asp-for="PatientNotes" class="form-control h-75" id="orderDetils" placeholder="Notes" rows="3"></textarea>
+                        <label for="orderDetils">Patient Notes</label>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input class="form-control" id="firstName" asp-for="FirstName" placeholder="FirstName" />
+                        <label for="first-name">First Name</label>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input class="form-control" id="lastName" asp-for="LastName" placeholder="LastName" />
+                        <label for="lastName">Last Name</label>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input class="form-control" id="birthDate" type="date" asp-for="BirthDate" placeholder="BirthDate" />
+                        <label for="birthDate">Date of Birth</label>
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-lg-6 d-flex align-items-baseline">
+                        <div class="form-floating w-100">
+                            <input class="form-control" id="phone" type="tel" asp-for="Mobile" placeholder="Mobile" />
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                            @*<label for="phone">Phone Number</label> *@
+                        </div>  
+                        <button class="px-3 mx-3">
+                            <i class="bi bi-telephone-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input class="form-control" id="email" type="email" asp-for="Email" disabled />
+                    <label for="email">Email</label>
+                </div>
+                @if(Model.IsAdmin)
+                {
+                    <button class="col-xl-6 col-md-6 col-lg-6 editButton" id="edit" onclick="ProfileEdit(true)" type="button">
+                        Edit
+                    </button>
+                }
+                <div class="col-xl-6 col-md-6 col-lg-6" id="submit">
+                    <button class="px-3">
+                        Save
+                    </button>
+                    <button class="px-3 mx-2" onclick="ProfileEdit(false)" type="reset">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <fieldset>
+                <h5 class="fw-semibold mt-4">
+                    Location Information
+                </h5>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input class="form-control" id="rgion" asp-for="Region" placeholder="Region" disabled/>
+                        <label for="rgion">Rgion</label>
+                        <span asp-validation-for="Region" class="text-danger"></span>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-lg-6 d-flex align-items-end">
+                        <div class="form-floating w-100">
+                            <input class="form-control" id="address" asp-for="Address" placeholder="Address" disabled/>
+                            <label for="address">Address</label>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <button class="px-3 mx-3" onclick="checkLocation()" type="button">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input class="form-control" id="room" asp-for="Room" placeholder="Room" disabled/>
+                        <label for="room">Room #</label>
+                        <span asp-validation-for="Room" class="text-danger"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="d-flex mt-2 justify-content-end">
+                @if(Model.Status == 1 && Model.IsAdmin)
+                {
+                    <a asp-controller="" asp-action="">
+                        <button class="px-3 mx-1" id="viewNotesButton" type="button">
+                            Assign
+                        </button>
+                    </a>
+                }
+                <a asp-controller="Admin" asp-action="ViewNotes">
+                    <button class="px-3 mx-1" id="viewNotesButton" type="button">
+                        View Notes
+                    </button>
+                </a>
+                @if(Model.IsAdmin)
+                {
+                    <button class="bg-danger px-3 text-white mx-1" onclick="cancelPopUp(@Model.RequestId)" data-bs-target="#cancelRequest" data-bs-toggle="modal" type="button">
+                        Cancle
+                    </button>
+                }
+            </div>
+        </form>
+    </div>
+    <script>
+        const phoneInputField = document.getElementById("phone");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+            initialCountry: "in",
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+    </script>
+

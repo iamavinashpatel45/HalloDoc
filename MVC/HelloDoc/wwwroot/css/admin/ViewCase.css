@@ -1,0 +1,75 @@
+﻿body {
+    background-color: #dcdbdb;
+}
+
+button {
+    height: 58px;
+    color: cadetblue;
+    font-size: 20px;
+    background-color : white;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+input {
+    height: 58px;
+}
+
+label,
+.editButton,
+.form-control {
+    margin-top: 2vh;
+}
+
+#submit {
+    display: none;
+    margin-top: 2vh;
+}
+
+#viewNotesButton {
+    background-color: cadetblue;
+    color : white;
+}
+
+.editButton{
+    width: 100px;
+    margin-left: 12px;
+}
+
+#form {
+    width: 100vw;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+#back-box {
+    height: 50px;
+    background-color: white;
+    width: 100px;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: #0a8185;
+    opacity: 1;
+    font-weight: 600;
+}
+
+
+/* -------------------media-queries-------------------*/
+@media screen and (max-width: 778px) {
+    h3 {
+        font-size: calc(1rem + .6vw);
+    }
+
+    #back-box{
+        width : 90px;
+    }
+
+}

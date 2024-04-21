@@ -1,0 +1,140 @@
+﻿@model Services.ViewModels.Admin.CreateRequest
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create Request";
+    ViewBag.JsFile = "/js/request.js";
+    ViewBag.CssFile = "/css/Admin/createRequest.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+        <h3>
+            Submit Information
+        </h3>
+        <button class="bg-white px-3 fw-bold" onclick="history.back()">
+            <i class="bi bi-chevron-left"> </i>
+            Back
+        </button>
+    </div>
+    <form asp-controller="Admin" asp-action="CreateRequest">
+        <h5 class="fw-bold">
+            Documents
+        </h5>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="FirstName" class="form-control" id="first-name" placeholder="FirstName" />
+                <label for="first-name">First Name</label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="LastName" class="form-control" id="last-name" placeholder="LastName" />
+                <label for="last-name">Last Name</label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Email" class="form-control" id="email" type="email" onfocusout="checkEmail(this)"
+                    placeholder="Email" />
+                <label for="email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Mobile" class="form-control" id="phone" type="tel" placeholder="Mobile" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row" id="input-password">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Password" class="form-control" id="password" placeholder="Password" type="password" />
+                <label for="password">Password</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="ConformPassword" class="form-control" id="conform" placeholder="ConformPassword"
+                    type="password" />
+                <label for="conform">Conform Password</label>
+                <span asp-validation-for="ConformPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="BirthDate" class="form-control" id="date" type="date" placeholder="BirthDate" />
+                <label id="date-picker" for="date">Date of Birth</label>
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+        </div>
+        <h5 class="fw-bold mt-4">
+            Location
+        </h5>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Street" class="form-control" id="street" placeholder="Street" />
+                <label for="street">Street</label>
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="City" class="form-control" id="city" placeholder="City" />
+                <label for="city">city</label>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="State" class="form-control" id="state" placeholder="State" />
+                <label for="state">State</label>
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="ZipCode" class="form-control" id="zip-code" placeholder="ZipCode" />
+                <label for="zip-code">Zip-Code</label>
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Room" class="form-control" id="room" placeholder="Room" />
+                <label for="room">Room(Optional)</label>
+            </div>
+            <div class="col-col-xl-6 col-md-6 col-lg-6">
+                <button class="px-3 me-2 bg-white locationButton fw-bold" onclick="checkLocation()" type="button">
+                    Verify
+                </button>
+                <button class="px-3 bg-white locationButton fw-bold" type="button">
+                    Map
+                </button>
+            </div>
+        </div>
+        <h5 class="fw-bold mt-4">
+            Notes
+        </h5>
+        <div class="row">
+            <div class="form-floating">
+                <textarea asp-for="Symptoms" class="form-control h-75" id="Symptoms" placeholder="Symptoms"
+                    rows="3"></textarea>
+                <label for="Symptoms">Enter Brief Details Of (Optional)</label>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3 mb-2">
+            <button class="px-3 me-2 text-white fw-bold bottomButtons">
+                Create
+            </button>
+            <a asp-controller="Admin" asp-action="Dashboard">
+                <button class="px-3 bg-white cancleButton fw-bold" type="reset">
+                    Cancel
+                </button>
+            </a>
+        </div>
+    </form>
+</div>
+<script>
+    const phoneInputField = document.getElementById("phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>

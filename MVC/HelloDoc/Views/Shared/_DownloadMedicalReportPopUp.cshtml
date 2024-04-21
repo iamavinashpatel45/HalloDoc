@@ -1,0 +1,27 @@
+﻿<link href="~/css/admin/_requestPopUp.css" rel="stylesheet" />
+<script src="~/js/Admin/requestPopUp.js"></script>
+<div class="modal" tabindex="-1" id="downloadReport">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Select Type of Care</h5>
+                <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle-fill h3 modal-title"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input readonly class="d-none patientRequestId" type="text" id="requestId" />
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Physician" asp-action="GeneratePDF" asp-route-requestId="37">
+                        <button type="button" class="btn mx-2 downloadPdf" id="conformButton">
+                            Download
+                        </button>
+                    </a>
+                    <button type="reset" class="btn" data-bs-dismiss="modal" id="closeButton">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+﻿@model Services.ViewModels.Admin.ViewNotes
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    string role = httpContextAccessor.HttpContext.Session.GetString("role");
+    Layout = $"_{role}Layout";
+    ViewData["Title"] = "ViewCase";
+    ViewBag.CssFile = "/css/Admin/ViewNotes.css";
+    ViewBag.Header = $"_{role}DashboardHeader";
+    int count = 0;
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+        <h3>
+            Notes
+        </h3>
+        <a asp-controller="@role" asp-action="Dashboard">
+            <button id="back-box" onclick="history.back()">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="d-flex flex-row card p-3">
+                <i class="bi bi-arrow-left-right fs-3 me-3"></i>
+                <div class="text-break">
+                    <h4 class="mt-1">
+                        Transfer Notes
+                    </h4>
+                    @foreach(var item in Model.TransferNotes)
+                    {
+                        if (item.Value != null)
+                        {
+                            count++;
+                            <div class="d-flex">
+                                <i class="bi bi-@count-square h4 me-2"></i>
+                                @item.Value
+                                (@item.Key)
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="d-flex flex-row card p-3">
+                <i class="bi bi-person-circle fs-3 me-3"></i>
+                <div class="text-break">
+                    <h4 class="mt-1">
+                        Physician Notes
+                    </h4>
+                    @Model.PhysicianNotes
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="d-flex flex-row card p-3">
+                <i class="bi bi-file-person-fill fs-3 me-3"></i>
+                <div class="text-break">
+                    <h4 class="mt-1">
+                        Admin Notes
+                    </h4>
+                    @Model.AdminNotes
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form asp-controller="Admin" asp-action="ViewNotes" id="form">
+                <div class="card p-3 d-flex align-items-end">
+                    <div class="form-floating w-100">
+                        <textarea class="form-control border-2 mb-2 h-100" placeholder="Additional Notes" rows="5" asp-for="NewNotes" id="newnotes">
+
+                        </textarea>
+                        <label for="newnotes">Additional Notes</label>
+                        <span asp-validation-for="NewNotes" class="text-danger mb-2"></span>
+                    </div>
+                    <button id="saveChanges" class="px-3" type="submit">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

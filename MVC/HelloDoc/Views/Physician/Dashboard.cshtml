@@ -1,0 +1,172 @@
+﻿@model Services.ViewModels.Physician.PhysicianDashboard
+
+
+@{
+    Layout = "_PhysicianLayout";
+    ViewData["Title"] = "Physician Dashboard";
+    ViewBag.JsFile = "/js/Admin/dashboard.js";
+    ViewBag.CssFile = "/css/admin/dashboard.css";
+    ViewBag.Header = "_PhysicianDashboardHeader";
+}
+
+
+<partial name="_SendLink" model="@Model.SendLink">
+<partial name="_RequestTransferPhysicianPopUp" model="@Model.PhysicianTransferRequest">
+<partial name="_SendAgreementPopUp" model="@Model.SendAgreement">
+<partial name="_EncounterPopUp">
+<partial name="_DownloadMedicalReportPopUp">
+<div class="cancelPopUp"></div>
+<div id="physician"></div>
+            <div id="mainbody">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4 col-4">
+                            <button class="d-flex flex-column optionButton w-100" id="newOption"
+                                onclick="changeTable(1)">
+                                <span class="mt-3 mb-1 mx-3 h5">
+                                    <i class="bi bi-patch-plus buttonLogo"></i>
+                                    NEW
+                                </span>
+                                <b class="mb-3 mx-3 h3">
+                                    @Model.NewRequestCount
+                                </b>
+                            </button>
+                        </div>
+                        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4">
+                            <button class="d-flex flex-column optionButton w-100" id="pendingOption"
+                                onclick="changeTable(2)">
+                                <span class="mt-3 mb-1 mx-3 h5">
+                                    <i class="bi bi-clock-history buttonLogo"></i>
+                                    PENDING
+                                </span>
+                                <b class="mb-3 mx-3 h3">
+                                    @Model.PendingRequestCount
+                                </b>
+                            </button>
+                        </div>
+                        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4">
+                            <button class="d-flex flex-column optionButton w-100" id="activeOption"
+                                onclick="changeTable(3)">
+                                <span class="mt-3 mb-1 mx-3 h5">
+                                    <i class="bi bi-person-check buttonLogo"></i>
+                                    ACTIVE
+                                </span>
+                                <b class="mb-3 mx-3 h3">
+                                    @Model.ActiveRequestCount
+                                </b>
+                            </button>
+                        </div>
+                        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4">
+                            <button class="d-flex flex-column optionButton w-100" id="concludeOption"
+                                onclick="changeTable(4)">
+                                <span class="mt-3 mb-1 mx-3 h5">
+                                    <i class="bi bi-check-circle buttonLogo"></i>
+                                    CONCLUDE
+                                </span>
+                                <b class="mb-3 mx-3 h3">
+                                    @Model.ConcludeRequestCount
+                                </b>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4 align-items-center">
+                        <div id="headingText" class="h3 d-flex heading">
+                            Patients
+                            <span id="statusText">
+                                (New)
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <button class="mx-1 middleOptionButtons" data-bs-target="#sendLink" data-bs-toggle="modal">
+                                <i class="bi bi-link-45deg"></i>
+                                <span class="buttonText">
+                                    Send Link
+                                </span>
+                            </button>
+                            <a asp-controller="Admin" asp-action="CreateRequest">
+                                <button class="mx-1 middleOptionButtons">
+                                    <i class="bi bi-file-plus"></i>
+                                    <span class="buttonText">
+                                        Create Requests
+                                    </span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="p-3 bg-white rounded-top-3 row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <input placeholder="Search Patient" class="p-2 searchPatient" oninput="patientSearch(1)"
+                                    type="search">
+                                <select aria-placeholder="Region" class="p-2 searchRegion" onchange="regionSearch(1)">
+                                    <option value="">All Region</option>
+                                    @foreach (var item in Model.Regions)
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                </select>
+                            </div>
+                            <div
+                                class="d-flex justify-content-end col-xl-6 col-lg-6 col-md-12 col-sm-12 align-items-md-center requesterButtons">
+                                <button class="px-3 bg-transparent" id="allButton" onclick="requesterTypeSearch(0,1)">
+                                    All
+                                </button>
+                                <div class="d-flex justify-content-center">
+                                    <button class="d-flex align-items-center colorOption border-0 bg-transparent"
+                                        onclick="requesterTypeSearch(2,1)">
+                                        <i class="bi bi-circle-fill text-success mx-1"></i>
+                                        <div class="colorText">
+                                            Patient
+                                            <hr class="border-bottom border-3 border-dark h1 buttonHr" id="hr-2" />
+                                        </div>
+                                    </button>
+                                    <button class="d-flex align-items-center colorOption border-0 bg-transparent"
+                                        onclick="requesterTypeSearch(3,1)">
+                                        <i class="bi bi-circle-fill text-warning mx-1"></i>
+                                        <div class="colorText">
+                                            Family/Friend
+                                            <hr class="border-bottom border-3 border-dark h1 buttonHr" id="hr-3" />
+                                        </div>
+                                    </button>
+                                    <button class="d-flex align-items-center colorOption border-0 bg-transparent"
+                                        onclick="requesterTypeSearch(1,1)">
+                                        <i class="bi bi-circle-fill text-danger mx-1"></i>
+                                        <div class="colorText">
+                                            Business
+                                            <hr class="border-bottom border-3 border-dark h1 buttonHr" id="hr-1" />
+                                        </div>
+                                    </button>
+                                    <button class="d-flex align-items-center colorOption border-0 bg-transparent"
+                                        onclick="requesterTypeSearch(4,1)">
+                                        <i class="bi bi-circle-fill text-primary mx-1"></i>
+                                        <div class="colorText">
+                                            Concierge
+                                            <hr class="border-bottom border-3 border-dark h1 buttonHr" id="hr-4" />
+                                        </div>
+                                    </button>
+                                    <button class="d-flex align-items-center colorOption border-0 bg-transparent"
+                                        onclick="requesterTypeSearch(5,1)">
+                                        <i class="bi bi-circle-fill text-info mx-1"></i>
+                                        <div class="colorText">
+                                            VIP
+                                            <hr class="border-bottom border-3 border-dark h1 buttonHr" id="hr-5" />
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="new" class="tables">
+                        <partial name="_NewTablePhysician" model="@Model.NewRequests">
+                    </div>
+                    <div id="pending" class="tables">
+                        <partial name="_PendingTablePhysician" model="@Model.PendingRequests">
+                    </div>
+                    <div id="active" class="tables">
+                        <partial name="_ActiveTablePhysician" model="@Model.ActiveRequests">
+                    </div>
+                    <div id="conclude" class="tables">
+                        <partial name="_ConcludeTablePhysician" model="@Model.ConcludeRequests">
+                    </div>
+                </div>
+            </div>

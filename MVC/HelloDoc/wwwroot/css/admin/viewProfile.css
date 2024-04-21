@@ -1,0 +1,54 @@
+﻿body {
+    background-color: #dcdbdb;
+}
+
+button {
+    height: 50px;
+    border-radius: 10px;
+    border: 0.5px solid;
+    margin-top: 5px;
+    border-color: cadetblue;
+    color: cadetblue;
+}
+
+.adminDetails {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+input {
+    height: 58px;
+}
+
+label,
+.radiobuttons,
+.form-select,
+.form-control {
+    margin-top: 2vh;
+}
+
+.edit{
+    display: none;
+}
+
+.form-check-label{
+    margin-top: 0px;
+}
+
+.bottomButtons {
+    background-color: cadetblue;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: #0a8185;
+    opacity: 1;
+    font-weight: 600;
+}

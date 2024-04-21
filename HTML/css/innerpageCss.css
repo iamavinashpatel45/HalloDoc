@@ -1,0 +1,310 @@
+body {
+    background-color: #FAFAFA;
+    font-family: roboto;
+}
+
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#header-rightside{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.body {
+    display: flex;
+}
+
+/* #left-side {
+    width: 335px;
+    height: 1279px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+.left-side {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 16px;
+    width: 183px;
+    height: 43px;
+    background-color: #ffffff;
+    border-width: 0px;
+}
+
+#header-bar-button{
+    border-width: 0px;
+    background-color: #ffffff;
+}
+
+input {
+    height: 50px;
+}
+
+select {
+    height: 50px;
+}
+
+#analysis-text {
+    font-size: 30px;
+}
+
+.form-header-text {
+    color: #3E3E3E;
+    font-size: 22px;
+    /* margin-bottom: 16px; */
+}
+
+#other-design {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.space-beetwen {
+    margin-left: 20px;
+}
+
+.input-margin {
+    margin-top: 10px;
+}
+
+.select-margin {
+    margin-top: 10px;
+}
+
+.textarea-margin {
+    margin-top: 10px;
+}
+
+.form-column-part {
+    margin-top: 30px;
+    padding-top: 10px;
+}
+
+.form-other-part {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+#form-start {
+    background-color: #FFFFFF;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 30px;
+}
+
+#right-side {
+    width: -moz-available;
+    background-color: #fafafa;
+    padding: 35px;
+    height: 120%;
+}
+
+#analysis {
+    background-color: #FFF3F4;
+    border-radius: 5px;
+}
+
+.opestions {
+    margin-left: 35px;
+    margin-right: 15px;
+}
+
+#upload {
+    width: 125px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #C8242F;
+    border-radius: 18px;
+}
+
+.radio-and-checkbox {
+    width: 100px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+
+.radio{
+    display: flex;
+    justify-self: start;
+}
+
+#error-message {
+    display: flex;
+    align-items: center;
+    color: #FF3535;
+    border: 1px solid #FF3535;
+    border-radius: 5px;
+    height: 50px;
+}
+
+#info-message {
+    display: flex;
+    align-items: center;
+    border: 1px solid #00B9E1;
+    color: #00B9E1;
+    border-radius: 5px;
+    height: 50px;
+}
+
+#warning-message {
+    display: flex;
+    align-items: center;
+    border: 1px solid #FFA800;
+    color: #FFA800;
+    border-radius: 5px;
+    height: 50px;
+}
+
+#success-message {
+    display: flex;
+    align-items: center;
+    border: 1px solid #00AF27;
+    color: #00AF27;
+    border-radius: 5px;
+    height: 50px;
+}
+
+#primary {
+    height: 40px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 23px;
+    background: #C8242F 0% 0% no-repeat padding-box;
+    color: #C8242F;
+}
+
+#primary-text {
+    color: white;
+}
+
+#secondary {
+    height: 40px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 23px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+#secondary-text {
+    color: #C8242F;
+}
+
+#tab-1 {
+    color: #C8242F;
+    margin-right: 35px;
+}
+
+#tab-2 {
+    margin-right: 35px;
+    color: #ADADAD;
+}
+
+#tab-3 {
+    color: #ADADAD;
+}
+
+#tab-1-text {
+    color: #3E3E3E;
+    font-size: 15px;
+}
+
+.right-space{
+    margin-right: 10px;
+}
+
+/* images */
+
+#menu-bar {
+    margin-left: 29px;
+    margin-right: 12px;
+}
+
+#header-logo {
+    width: 142px;
+    height: 30px;
+}
+
+#search-icon {
+    width: 15.59px;
+    height: 15.59px;
+}
+
+#notification-icon {
+    margin-right: 25px;
+    width: 21.52px;
+    height: 21.52px;
+}
+
+#profile {
+    margin-left: 12px;
+}
+
+input {
+    border: 1px solid #ADADAD;
+}
+
+#downward-arrow {
+    margin-right: 24px;
+    margin-left: 15px;
+    width: 10px;
+}
+
+.left-side-image {
+    width: 15px;
+    height: 15px;
+    margin-left: 18 px;
+}
+
+.message-images{
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+
+/* media queries */
+
+@media only screen and (max-width:768px) {
+    #search-text{
+        display: none;
+    }
+
+    #profile{
+        display: none
+    }
+
+    #header-logo {
+        width: 100px;
+        height: 30px;
+    }
+
+    #notification-icon {
+        margin-right: 22px;
+        width: 21.52px;
+        height: 21.52px;
+    }
+}
+
+@media only screen and (max-width:576px){
+    .snackbar-text{
+        font-size: 12px;
+    }
+}
+

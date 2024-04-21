@@ -1,0 +1,257 @@
+﻿@model Services.ViewModels.Admin.EncounterForm
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    string role = httpContextAccessor.HttpContext.Session.GetString("role");
+    Layout = $"_{role}Layout";
+    ViewData["Title"] = "Encounter Form";
+    ViewBag.JsFile = "/js/request.js";
+    ViewBag.CssFile = "/css/Admin/encounterForm.css";
+    ViewBag.Header = $"_{role}DashboardHeader";
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+        <h3>
+            Encounter Form
+        </h3>
+        <a asp-controller="@role" asp-action="Dashboard">
+            <button id="back-box" class="bg-white">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <form asp-controller="Admin" asp-action="EncounterForm" class="mb-3">
+        <div class="text-center h3 headingText">
+            Medical Report - Confidential
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="FirstName" class="form-control" id="firstName" placeholder="BusinessFirstName" />
+                <label for="firstName">First Name</label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="LastName" class="form-control" id="lastName" placeholder="BusinessLastName" />
+                <label for="lastName">Last Name</label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating">
+                <input asp-for="Location" class="form-control" id="location" placeholder="BusinessFirstName" />
+                <label for="location">Location</label>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="BirthDate" class="form-control" id="date" type="date" placeholder="BirthDate" />
+                <label for="date">Date of Birth</label>
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Date" class="form-control" id="date" type="date" placeholder="BirthDate" />
+                <label for="date">Date</label>
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Mobile" class="form-control" id="phone" type="tel" placeholder="Mobile" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <input asp-for="Email" class="form-control" id="email" placeholder="BusinessLastName" />
+                <label for="email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="HistoryOfIllness" class="form-control h-75" id="presentIllness"
+                    placeholder="orderDetils" rows="2"></textarea>
+                <label for="presentIllness">History Of Present Illness Or Injury</label>
+                <span asp-validation-for="HistoryOfIllness" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="MedicalHistory" class="form-control h-75" id="medicalHistory"
+                    placeholder="orderDetils" rows="2"></textarea>
+                <label for="medicalHistory">Medical History</label>
+                <span asp-validation-for="MedicalHistory" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Medications" class="form-control h-75" id="medications" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="medications">Medications</label>
+                <span asp-validation-for="Medications" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Allergies" class="form-control h-75" id="allergies" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="allergies">Allergies</label>
+                <span asp-validation-for="Allergies" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-4 col-md-4 col-lg-4">
+                <input asp-for="Temp" class="form-control" id="temp" placeholder="BirthDate" />
+                <label for="temp">Temp</label>
+                <span asp-validation-for="Temp" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-4 col-md-4 col-lg-4">
+                <input asp-for="HeartRate" class="form-control" id="hr" placeholder="BirthDate" />
+                <label for="hr">HR</label>
+                <span asp-validation-for="HeartRate" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-4 col-md-4 col-lg-4">
+                <input asp-for="RespiratoryRate" class="form-control" id="rr" placeholder="BirthDate" />
+                <label for="rr">RR</label>
+                <span asp-validation-for="RespiratoryRate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4">
+                <div class="row">
+                    <div class="form-floating col-6">
+                        <input asp-for="BloodPressure1" class="form-control" id="bp-1" placeholder="BirthDate" />
+                        <label for="bp-1">Bood Pressure</label>
+                        <span asp-validation-for="BloodPressure1" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-6">
+                        <input asp-for="BloodPressure2" class="form-control" id="bp-2" placeholder="BirthDate" />
+                        <label for="bp-2">Bood Pressure</label>
+                        <span asp-validation-for="BloodPressure2" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating col-xl-4 col-md-6 col-lg-4">
+                <input asp-for="O2" class="form-control" id="o2" placeholder="BirthDate" />
+                <label for="o2">O2</label>
+                <span asp-validation-for="O2" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-4 col-md-6 col-lg-4">
+                <input asp-for="Pain" class="form-control" id="pain" placeholder="BirthDate" />
+                <label for="pain">Pain</label>
+                <span asp-validation-for="Pain" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Heent" class="form-control h-75" id="heent" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="heent">Heent</label>
+                <span asp-validation-for="Heent" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="CV" class="form-control h-75" id="CV" placeholder="orderDetils" rows="2"></textarea>
+                <label for="CV">CV</label>
+                <span asp-validation-for="CV" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Chest" class="form-control h-75" id="chest" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="chest">Chest</label>
+                <span asp-validation-for="Chest" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="ABD" class="form-control h-75" id="ABD" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="ABD">ABD</label>
+                <span asp-validation-for="ABD" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Extra" class="form-control h-75" id="extr" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="extr">Extr</label>
+                <span asp-validation-for="Extra" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Skin" class="form-control h-75" id="skin" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="skin">Skin</label>
+                <span asp-validation-for="Skin" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Neuro" class="form-control h-75" id="neuro" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="neuro">Neuro</label>
+                <span asp-validation-for="Neuro" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Other" class="form-control h-75" id="other" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="other">Other</label>
+                <span asp-validation-for="Other" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Diagnosis" class="form-control h-75" id="diagnosis" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="diagnosis">Diagnosis</label>
+                <span asp-validation-for="Diagnosis" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="TreatmentPlan" class="form-control h-75" id="treatmentPlan" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="treatmentPlan">Treatment Plan</label>
+                <span asp-validation-for="TreatmentPlan" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Dispensed" class="form-control h-75" id="dispensed" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="dispensed">Medications Dispensed</label>
+                <span asp-validation-for="Dispensed" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                <textarea asp-for="Procedures" class="form-control h-75" id="procedures" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="procedures">Procedures</label>
+                <span asp-validation-for="Procedures" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating">
+                <textarea asp-for="FollowUp" class="form-control h-75" id="followUp" placeholder="orderDetils"
+                    rows="2"></textarea>
+                <label for="followUp">FollowUp</label>
+                <span asp-validation-for="FollowUp" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3 mb-2">
+            <button class="px-3 me-3 text-white saveButton fw-bold" type="submit">
+                Save Changes
+            </button>
+            @if (!Model.IsAdmin)
+            {
+                <button class="px-3 me-3 text-white finalizeButton fw-bold" type="submit" asp-controller="Physician" asp-action="FinalizeEncounter">
+                    Finalize
+                </button>
+            }
+            <button class="px-3 bg-white cancleButton fw-bold" type="reset">
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    const phoneInputField = document.getElementById("phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>

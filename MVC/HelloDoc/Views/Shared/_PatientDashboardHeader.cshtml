@@ -1,0 +1,65 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+
+<link href="~/css/patient/_dashboardHeader.css" rel="stylesheet" />
+<header>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <button id="slidebar-button" onclick="sidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <img id="logo-image" src="~/images/helloDocLogo.png" />
+        </div>
+        <div class="d-flex align-items-center">
+            <span id="welcome-text">
+                Welcome
+                <b class="name"> 
+                    @HttpContextAccessor.HttpContext.Session.GetString("firstName") 
+                    @HttpContextAccessor.HttpContext.Session.GetString("lastName")
+                </b>
+            </span>
+            <a asp-controller="Patient" asp-action="Logout">
+                <button id="log-out" class="bg-white">
+                    <span id="button-text">
+                        Logout
+                    </span>
+                    <i id="button-icon" class="bi bi-box-arrow-right"> </i>
+                </button>
+            </a>
+            <button id="them-icon" class="bg-white">
+                <i class="bi-moon"> </i>
+            </button>
+        </div>
+    </div>
+    <hr/>
+    <div id="header-buttom" class="mx-2">
+        <a asp-controller="Patient" asp-action="Dashboard" class="mx-2">
+            <div class="mx-2 h6">
+                Dashboard
+            </div>
+        </a>
+        <a asp-controller="Patient" asp-action="ViewProfile" class="mx-2">
+            <div class="mx-2 h6">
+                Profile
+            </div>
+        </a>
+    </div>
+</header>
+@*<div id="side-bar" >
+    <a asp-controller="Patient" asp-action="Dashboard" asp-route-id="@Model.AspNetUserId">
+        <button class="sidebar-button navbar-item w-75" id="dashboard" onclick="changeTab(true)">
+            Dashboard
+        </button>
+    </a>
+    <a asp-controller="Patient" asp-action="ViewProfile" asp-route-id="@Model.AspNetUserId">
+        <button class="sidebar-button navbar-item w-75" id="profile" onclick="changeTab(false)">
+            Profile
+        </button>
+    </a>
+</div>*@
+@*<script>
+    function logout(){
+        @{
+          HttpContextAccessor.HttpContext.Session.Remove("aspNetUserId");
+        }
+    }
+</script>*@

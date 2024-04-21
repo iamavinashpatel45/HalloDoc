@@ -1,0 +1,130 @@
+body {
+    background-color: #dcdbdb;
+}
+
+#back-box {
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-color: cadetblue;
+    border-width: 1px;
+    border-style: solid;
+    height: 50px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: cadetblue;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#form {
+    width: 100vw;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+label,
+.form-control {
+    margin-top: 2vh;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+button {
+    height: 58px;
+    margin-top: 2vh;
+    width: 150px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #1db5d0;
+    color: white;
+}
+
+input {
+    height: 58px;
+}
+
+    input[type="file"]::-webkit-file-upload-button {
+        display: none;
+    }
+
+.bottom-button {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    border: 1px solid #1db5d0;
+    border-radius: 10px;
+}
+
+#submit-button {
+    background-color: #1db5d0;
+    margin-right: 20px;
+    color: white;
+}
+
+#cancel-button {
+    color: #1db5d0;
+    background-color: white;
+}
+
+.btn,
+.btn:hover {
+    font-size: 20px;
+    color: white;
+    width: 25%;
+    background-color: #1db5d0;
+    border: 0.5px solid black;
+    height: 50px;
+}
+
+button:hover {
+    font-weight: bold;
+}
+
+#input-password {
+    display: none;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: #0a8185;
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* media Queries */
+
+@media screen and (max-width: 576px) {
+    button {
+        width: 100px;
+    }
+
+    .fs-5 {
+        font-size: 1rem !important;
+    }
+
+    .fw-semibold {
+        font-size: 1.1rem;
+    }
+
+    #alert-box {
+        width: 360px;
+        height: 300px;
+    }
+
+    span {
+        font-size: 12px;
+    }
+}

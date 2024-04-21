@@ -1,0 +1,107 @@
+﻿body {
+    background-color: #dcdbdb;
+}
+
+button {
+    height: 50px;
+    border-radius: 10px;
+    border: 0.5px solid;
+    margin-top: 5px;
+    border-color: cadetblue;
+    color: cadetblue;
+}
+
+.form {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+label,
+.uploadButtonFilepicker,
+.createButton,
+.form-check,
+.form-select,
+.form-control {
+    margin-top: 2vh;
+}
+
+.createButton,
+.uploadButtonFilepicker,
+input {
+    height: 58px;
+}
+
+.uploadButtons{
+    background-color: cadetblue;
+}
+
+.uploadButtonFilepicker{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+input[type=file]::-webkit-file-upload-button {
+    display: none;
+}
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+}
+
+.input-group-text {
+    background-color: cadetblue;
+    color: white;
+    border-radius: 10px;
+}
+
+.input-group {
+    width: fit-content;
+}
+
+.form-check-label{
+    margin-top: 0px;
+}
+
+.bottomButtons {
+    background-color: cadetblue;
+}
+
+.edit {
+    display: none;
+}
+
+a{
+    border-radius: 10px;
+}
+
+.uploadButton{
+    margin-top: 0px;
+}
+
+.uploadFile {
+   justify-content: space-between;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: #0a8185;
+    opacity: 1;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+
+    .uploadFile{
+        flex-direction: column;
+        align-items: start;
+    }
+
+}

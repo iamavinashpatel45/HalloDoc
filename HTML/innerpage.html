@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Innerpage</title>
+    <link href="css/innerpageCss.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/custom.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+</head>
+
+<body onload="firstTimeLoadPage()">
+    <!-- header -->
+    <header class="container-fluid">
+        <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-5">
+            <button onclick="slidebar()" id="header-bar-button">
+                <img id="menu-bar" src="images/menu-bar.svg" />
+            </button>
+            <button onclick="window.location.href='index.html'" id="header-bar-button">
+                <img id="header-logo" src="images/header-logo.svg" />
+            </button>
+        </div>
+        <div class="col-xxl-7 col-xl-6 col-lg-5 col-md-4 col-sm-2">
+            <img id="search-icon" src="images/search-icon.svg" />
+            <span id="search-text"> Search </span>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-5" id="header-rightside">
+            <img id="notification-icon" src="images/notification-icon.svg" />
+            <img src="images/profile.png" />
+            <span id="profile">John Doe</span>
+            <img id="profile" src="images/downward-arrow.svg" />
+        </div>
+    </header>
+    <div class="body">
+        <!-- left side-->
+        <div id="sidebar">
+            <button class="left-side" onclick="window.location.href='dashboard.html';">
+                <span class="opestions">
+                    <img class="left-side-image" src="images/dashboard-default.svg" />
+                </span>
+                <span> Dashboard </span>
+            </button>
+            <div class="left-side" id="analysis">
+                <span class="opestions">
+                    <img class="left-side-image" src="images/graph-active.svg" />
+                </span>
+                <span> Analysis </span>
+            </div>
+            <div class="left-side">
+                <span class="opestions">
+                    <img class="left-side-image" src="images/inbox-default.svg" />
+                </span>
+                <span> Index </span>
+            </div>
+            <div class="left-side">
+                <span class="opestions">
+                    <img class="left-side-image" src="images/clock-default.svg" />
+                </span>
+                <span> History </span>
+            </div>
+            <div class="left-side">
+                <span class="opestions">
+                    <img class="left-side-image" src="images/user-default.svg" />
+                </span>
+                <span> User </span>
+            </div>
+            <div class="left-side">
+                <span class="opestions">
+                    <img class="left-side-image" src="images/maintenance-default.svg" />
+                </span>
+                <span> Maintenance </span>
+            </div>
+            <div class="left-side">
+                <span class="opestions">
+                    <img class="left-side-image" src="images/setting-default.svg " />
+                </span>
+                <span> Setting </span>
+            </div>
+        </div>
+        <!-- form -->
+        <div id="right-side">
+            <span id="analysis-text"> Analysis </span>
+            <div id="form-start">
+                <div class="form-column-part">
+                    <div class="form-header-text">One Column</div>
+                    <div>
+                        <div>
+                            <input type="text" class="form-control input-margin" id placeholder="Name" />
+                        </div>
+                        <div>
+                            <select class="form-select select-margin">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                        <textarea class="form-control textarea-margin" id placeholder="Multiple line"
+                            rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-column-part container-fluid">
+                    <div class="form-header-text">Two Column</div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <input type="text" class="form-control input-margin" placeholder="Name" />
+                            <input type="password" class="form-control input-margin" placeholder="Password" />
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <input type="text" class="form-control input-margin" value="Jhondoe" />
+                            <select class="form-select select-margin" aria-placeholder="Dropdown">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-column-part container-fluid">
+                    <div class="form-header-text">Three Column</div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                            <input class="form-control input-margin" type="text" placeholder="Name" />
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                            <input class="form-control input-margin" type="password" value="Password" />
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                            <input class="form-control input-margin" type="text" placeholder="Jhondoe" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-column-part container-fluid">
+                    <div class="form-header-text">Four Column</div>
+                    <div class="row">
+                        <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <input class="form-control input-margin" type="text" placeholder="Ui Designer" />
+                        </div>
+                        <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <input class="form-control input-margin" type="text" placeholder="Name" />
+                        </div>
+                        <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <input class="form-control input-margin" type="text" placeholder="Jhondoe" />
+                        </div>
+                        <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <select class="form-select select-margin">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-header-text" id="other-design">
+                    Other Design Elements
+                </div>
+                <div class="form-other-part container-fluid">
+                    <div class="form-header-text">File Upload</div>
+                    <div class="row">
+                        <div id="upload">
+                            <img src="images/cloud-upload-icon.svg" alt />
+                            Upload
+                        </div>
+                        <span class="col"> No Iteam selected </span>
+                    </div>
+                </div>
+                <div class="form-other-part container-fluid">
+                    <div class="form-header-text">Radio Button</div>
+                    <div class="row">
+                        <div class="radio-and-checkbox col-xxl-1 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <input type="radio" value id="option-1" name="opestions" class="right-space"/>
+                            <label for="option-1"> Option-1 </label>
+                        </div>
+                        <div class="radio-and-checkbox col-xxl-1 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <input type="radio" value id="option-2" name="opestions" class="right-space"/>
+                            <label for="option-1"> Option-2 </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-other-part container-fluid">
+                    <div class="form-header-text">Checkbox</div>
+                    <div class="row">
+                        <div class="radio-and-checkbox col-xxl-1 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <input type="checkbox" value id="option-1" name="opestions" class="right-space"/>
+                            <label for="option-1"> Option-1 </label>
+                        </div>
+                        <div class="radio-and-checkbox col-xxl-1 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <input type="checkbox" value id="option-2" name="opestions" class="right-space"/>
+                            <label for="option-1"> Option-2 </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-other-part container-fluid">
+                    <div class="form-header-text">Snakebar</div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div id="error-message" class="input-margin">
+                                <img src="images/error-icon.svg" class="message-images" />
+                                <span class="snackbar-text">This is an error Message</span>
+                            </div>
+                            <div id="warning-message" class="input-margin">
+                                <img src="images/warning-icon.svg" class="message-images" />
+                                <span class="snackbar-text">This is an warning Message</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div id="info-message" class="input-margin">
+                                <img src="images/info-icon.svg" class="message-images" />
+                                <span class="snackbar-text"class="snackbar-text">This is an information Message</span>
+                            </div>
+                            <div id="success-message" class="input-margin">
+                                <img src="images/success-icon.svg" class="message-images" />
+                                <span class="snackbar-text">This is an success Message</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-other-part container-fluid">
+                    <div class="form-header-text">Call to action</div>
+                    <div class="row">
+                        <div class="col-xxl-1 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div id="primary">
+                                <span id="primary-text"> Primary </span>
+                            </div>
+                        </div>
+                        <div class="col-xxl-1 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div id="secondary">
+                                <span id="secondary-text"> Secondary </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-other-part">
+                    <div class="form-header-text">Tabs</div>
+                    <div>
+                        <span id="tab-1"> Tab 1 </span>
+                        <span id="tab-2"> Tab 2 </span>
+                        <span id="tab-3"> Tab 3 </span>
+                    </div>
+                    <hr />
+                    <div class="tab-1-text">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry. Lorem Ipsum has been the industry's standard dummy text
+                        ever since the 1500s, when an unknown printer took a galley of
+                        type and scrambled it to make a type specimen book. It has
+                        survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets
+                        containing
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

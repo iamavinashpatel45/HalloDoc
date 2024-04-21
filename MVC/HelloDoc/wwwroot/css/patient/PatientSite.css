@@ -1,0 +1,99 @@
+#bg-image{
+    display: none;
+}
+
+button{
+    height: 60px;
+    width: 500px;
+    border-radius: 10px;
+    margin-bottom: 3vh;
+    font-size: 25px;
+    color: white;
+}
+
+button:hover{
+    font-weight:bold;
+}
+
+#them-icon{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    border-radius: 10px;
+    border-color: cadetblue;
+    border-width: 2px;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submit-button{
+    background-color: #01bce9;
+}
+
+.conditions-text{
+    color: #86878a;
+    text-decoration: none;
+    margin-top:65px;
+}
+
+#register-button{
+    background-color: #0d1556;
+}
+
+#admin-button {
+    background-color: #64b57f;
+}
+
+#bottom-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    background-color: #f8f4f4;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+
+a {
+    height: 60px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+#logo-image {
+    margin-bottom: 15vh;
+}
+
+/* ---------------------------media query---------------------------*/
+
+@media screen and (max-width:576px) {
+
+    #bg-image{
+        display: inline;
+        width: 70vw;
+        height: 100vh;
+        position: absolute;
+        opacity: 0.3;
+        z-index: -1;
+    }
+
+    button{
+        width: 320px;
+    }
+
+    #bottom-box{
+        font-size: 10px;
+        width: 200px;
+        height: 40px;
+    }
+
+    #logo-image {
+        margin-bottom: 25vh;
+        visibility: hidden;
+    }
+}

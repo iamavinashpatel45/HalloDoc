@@ -1,0 +1,87 @@
+﻿@model Services.ViewModels.Admin.Records
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Records";
+    ViewBag.JsFile = "/js/Admin/record.js";
+    ViewBag.CssFile = "/css/Admin/records.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+        <h3>
+            Search Records
+        </h3>
+        <a asp-controller="Admin" asp-action="ExportAllRecords">
+            <button class="px-3 fw-bold cloredButton text-white">
+                <i class="bi bi-folder-symlink-fill"></i>
+                <span class="buttonText">
+                    Export Data To Excel
+                </span>
+            </button>
+        </a>
+    </div>
+    <div class="recordList">
+        <form id="filterForm">
+            <div class="row">
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <select asp-for="RequestStatus" class="form-select" id="requestStatus">
+                        <option value="">All</option>
+                        <option value="1">Pending</option>
+                        <option value="2">Setted</option>
+                        <option value="3">Declined</option>
+                        <option value="4">Setted Offline</option>
+                    </select>
+                    <label for="requestStatus">Request Status</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="PatientName" class="form-control" id="name" placeholder="Name" />
+                    <label for="name">Patient Name</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <select asp-for="RequestType" class="form-select" id="requestType">
+                        <option value="">All</option>
+                        <option value="1">Business</option>
+                        <option value="2">Patient</option>
+                        <option value="3">Family-Friend</option>
+                        <option value="4">Concierge</option>
+                    </select>
+                    <label for="requestType">Request Type</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="StartDate" class="form-control" id="startDate" placeholder="StartDate"
+                        type="date" />
+                    <label for="startDate">From Date Of Service</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="EndDate" class="form-control" id="endDate" placeholder="EndDate" type="date" />
+                    <label for="endDate">To Date Of Service</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="ProviderName" class="form-control" id="providerName" placeholder="ProviderName" />
+                    <label for="providerName">Provider Name</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Email" class="form-control" id="email" placeholder="Email" />
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Number" class="form-control" id="number" placeholder="Number" />
+                    <label for="number">Phone Number</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end align-items-center mt-2 mb-2">
+                <button class="bg-white px-3 me-3 fw-bold resetRecords" type="button">
+                    Clear
+                </button>
+                <button class="px-3 cloredButton text-white fw-bold searchButton" type="button">
+                    Search
+                </button>
+            </div>
+        </form>
+        <div class="tableData">
+            <partial name="_RecordTable" model="@Model.RecordTableDatas"></partial>
+        </div>
+    </div>
+</div>

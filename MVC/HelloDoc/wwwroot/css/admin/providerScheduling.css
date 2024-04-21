@@ -1,0 +1,150 @@
+﻿body {
+    background-color: #dcdbdb;
+}
+
+button {
+    height: 50px;
+    border-radius: 10px;
+    border: 0.5px solid;
+    margin-top: 5px;
+    border-color: cadetblue;
+    color: cadetblue;
+}
+
+.bg-green {
+    background-color: #a5cea3;
+}
+
+.text-green {
+    color: #a5cea3;
+}
+
+.bg-pink {
+    background-color: #fac4f9;
+}
+
+.text-pink {
+    color: #fac4f9;
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent;
+}
+
+tr {
+    height: 45px;
+}
+
+.profilePhoto{
+    width: 8vh;
+}
+
+.providerList {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+.select {
+    border-radius: 10px;
+    height: 50px;
+    width: 325px;
+}
+
+.icons{
+    color: cadetblue;
+}
+
+.image{
+    height: 40px;
+}
+
+.active {
+    background-color: cadetblue;
+    color: white;
+}
+
+
+#deletebutton{
+    height: 45px;
+}
+
+select{
+    height:50px;
+}
+
+label,
+.form-select,
+.form-switch,
+.form-control {
+    margin-top: 1vh;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+.form-check-label {
+    margin-top: 0px;
+}
+
+#regionsList{
+    margin-top: 0px;
+}
+
+.columnWidth{
+    width: 14.2%;
+}
+
+.divHeight {
+    height: 16.66%;
+    border-bottom : 1px solid black;
+    vertical-align: middle!important;
+    font-size: 15px;
+}
+
+.columnHeight{
+    height: 300px;
+}
+
+.table > :not(caption) > * > *{
+    padding: 0px;
+}
+
+.dayWiseColumnWidth{
+    width: 3.125%;
+}
+
+#smallScreen,
+.edit{
+    display: none;
+}
+
+
+@media screen and (max-width:992px) {
+    .topElements {
+        flex-direction: column;
+    }
+
+    .topButtons,
+    .select {
+        width: 100%;
+    }
+
+    .divHeight {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #bigScreen{
+        display: none;
+    }
+
+    #smallScreen{
+        display: table;
+    }
+}
+
+

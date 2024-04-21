@@ -1,0 +1,35 @@
+﻿@model Services.ViewModels.Admin.RequestSupport
+
+<link href="~/css/admin/_requestPopUp.css" rel="stylesheet" />
+<script src="~/js/Admin/requestPopUp.js"></script>
+<div class="modal" tabindex="-1" id="requestSupport">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Request Support</h5>
+                <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle-fill h3 modal-title"></i>
+                </button>
+            </div>
+            <form asp-controller="Admin" asp-action="RequestSupport" id="requestSupportForm">
+                <div class="modal-body">
+                    To all unscheduled Physicians: We are short on coverage and needs additional support On Call to respond to Requests.
+                    <div class="form-floating mt-2">
+                        <textarea asp-for="Message" class="form-control h-100 border-2 mt-3" placeholder="Message" id="message" rows="5">
+                        </textarea>
+                        <label for="Notes">Message</label>
+                        <span class="text-danger" id="messageValidation"></span>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="submit" class="btn mx-2" id="conformButton">
+                            Conform
+                        </button>
+                        <button type="button" class="btn" data-bs-dismiss="modal" id="closeButton">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

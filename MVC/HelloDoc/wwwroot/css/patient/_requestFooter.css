@@ -1,0 +1,16 @@
+﻿.text_color{
+    color:white;
+    text-decoration:none;
+}
+
+footer{
+    height:30px;
+}
+
+/* media Queries */
+
+@media screen and (max-width:576px) {
+    .text_color{
+        font-size: 14px;
+    }
+}

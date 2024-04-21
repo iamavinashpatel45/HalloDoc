@@ -1,0 +1,107 @@
+#back-box {
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    border-radius: 10px;
+    border-color: cadetblue;
+    border-width: 1px;
+    border-style: solid;
+    height: 50px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: cadetblue;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+header{
+    box-shadow: 0px 0px 8px lightgray;
+}
+
+#logo-image{
+    width: 150px;
+    margin-left: 4vh;
+}
+
+.button {
+    display: flex;
+    width: 350px;
+    height: 60px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 3vh;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+.button:hover {
+    font-weight: bold;
+    /*border-radius: 5px;*/
+}
+
+#patient-box{
+    background-color: #e9eaef;
+    color: #5e699a;
+    border-color: #cacdd4;
+}
+
+#family-friend-box{
+    background-color: #e5f2f8;
+    color: #3f9eba;
+    border-color: #bddbf8;
+}
+
+#concierge-box{
+    background-color: #e9f0e8;
+    color: #4f8758;
+    border-color: #d0f6cd;
+}
+
+#business-box{
+    background-color: #f6e7ee;
+    color: #93386e;
+    border-color: #f6cfe4;
+}
+
+#heading-text{
+    width: 350px;
+    font-size: 35px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+}
+
+a {
+    height: 60px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+
+/* --------------------------------------media queries----------------------------- */
+
+
+@media screen and (max-width:576px) {
+
+    #back-box {
+        right: 30px;
+    }
+
+    button{
+        display: none;
+        width: 320px;
+    }
+
+    #heading-text{
+        width: 320px;
+        font-size: 25px;
+        font-weight: 500;
+    }
+}

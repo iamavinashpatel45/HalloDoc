@@ -1,0 +1,130 @@
+﻿@model Services.ViewModels.AddRequestByPatient
+
+@{
+    Layout = "_PatientLayout";
+    ViewData["Title"] = "Request For Me";
+    ViewBag.CssFile = "/css/patient/requestForMe.css";
+    ViewBag.Header = "_PatientDashboardHeader";
+}
+
+
+
+<div id="main-body">
+    <div class="d-flex justify-content-between container align-items-center">
+        <h3>
+            Submit Information
+        </h3>
+        <a id="back-box" asp-controller="Patient" asp-action="Dashboard">
+            <i class="bi bi-chevron-left"> </i>
+            Back
+        </a>
+    </div>
+    <form class="w-100" asp-controller="Patient" asp-action="RequestForMe" enctype="multipart/form-data">
+        <div class="container" id="form">
+            <h5 class="fw-semibold">
+                Patient Information
+            </h5>
+            <div class="row">
+                <div class="form-floating">
+                    <textarea asp-for="Symptoms" class="form-control h-75" id="Symptoms" placeholder="Symptoms"
+                        rows="3"></textarea>
+                    <label for="Symptoms">Enter Brief Details Of Symptoms(Optional)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="FirstName" class="form-control" id="first-name" placeholder="FirstName" />
+                    <label for="first-name">First Name</label>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="LastName" class="form-control" id="last-name" placeholder="LastName" />
+                    <label for="last-name">Last Name</label>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="BirthDate" class="form-control" id="date" type="date" placeholder="BirthDate" />
+                    <label id="date-picker" for="date">Date of Birth</label>
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+            </div>
+            <h5 class="fw-semibold mt-4">
+                Patient Contact Information
+            </h5>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Email" class="form-control" id="email" type="email" disabled />
+                    <input readonly asp-for="Email" class="form-control d-none" id="email" type="email" />
+                    <label for="email">Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Mobile" class="form-control" id="phone" type="tel" placeholder="Mobile" />
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                    @*<label for="phone">Phone Number</label> *@
+                </div>
+            </div>
+            <h5 class="fw-semibold mt-4">
+                Patient Location
+            </h5>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="Street" class="form-control" id="street" placeholder="Street" />
+                    <label for="street">Street</label>
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="City" class="form-control" id="city" placeholder="City" />
+                    <label for="city">city</label>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="State" class="form-control" id="state" placeholder="State" />
+                    <label for="state">State</label>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="ZipCode" class="form-control" id="zip-code" placeholder="ZipCode" />
+                    <label for="zip-code">Zip-Code</label>
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-col-xl-6 col-md-6 col-lg-6">
+                    <input asp-for="House" class="form-control" id="house" placeholder="House" />
+                    <label for="house">house(Optional)</label>
+                </div>
+            </div>
+            <h5 class="fw-semibold mt-4">
+                (Optional)Upload Photo or Document
+            </h5>
+            <div class="input-group">
+                <input class="form-control" type="file" id="file-picker" asp-for="File" />
+                <button class="uploadButton fs-5" type="button">
+                    <i class="bi bi-cloud-arrow-up-fill"></i>
+                    Upload
+                </button>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button class="bottom-button" id="submit-button">
+                    Submit
+                </button>
+                <button type="button" class="bottom-button" id="cancel-button">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    const phoneInputField = document.getElementById("phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>

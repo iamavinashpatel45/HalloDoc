@@ -1,0 +1,185 @@
+body {
+    background-color: #FAFAFA;
+    font-family: roboto;
+}
+
+.center {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#left-side {
+    display: flex;
+    justify-content: end;
+}
+
+.hero_image {
+    border-radius: 50%;
+    float: left;
+    box-shadow: 0px 4px 31px #0000000A;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #FFFFFF;
+    margin-right: 50px;
+    margin-left: 30px;
+}
+
+.logo_image {
+    margin-bottom: 19.17px;
+}
+
+button {
+    background-color: #C8242F;
+    width: 138px;
+    height: 45px;
+    border-radius: 22.5px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-top: 40.15px;
+}
+
+input {
+    width: 429px;
+    height: 49px;
+    background-color: #FFFFFF;
+    border-color: #ADADAD;
+    border-width: 1px;
+    border-radius: 5px;
+    
+}
+
+.text1 {
+    padding-top: 31.87px;
+    font-size: 25px;
+    color: #3E3E3E;
+    padding-bottom: 23.45;
+}
+
+.text2 {
+    padding-top: 19.17px;
+    font-size: 40px;
+    color: #3E3E3E;
+    font-weight: 300;
+}
+
+.text3 {
+    color: #C8242F;
+    font-weight: 900;
+}
+
+.new_member {
+    padding-top: 23.13px;
+    font-size: 15px;
+}
+
+.register {
+    color: #C8242F;
+    font-size: 15px;
+}
+
+.forgot_password {
+    padding-left: 170.44px;
+    color: #ADADAD;
+    font-size: 15px;
+}
+
+a:link {
+    color: #ADADAD;
+    text-decoration: none;
+}
+
+input::placeholder {
+    padding-left: 14.5px;
+    font-size: 15px;
+    color: #ADADAD;
+}
+
+form {
+    padding-top: 23.45px;
+}
+
+.password-input {
+    margin-top: 27px;
+    margin-bottom: 27px;
+}
+
+/* media queries */
+
+@media only screen and (max-width:576px) {
+    #left-side {
+        scale: 0.5;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: -100px;
+    }
+
+    #rigth-side {
+        margin-top: -110px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text2 {
+        padding-top: 19.17px;
+        font-size: 25px;
+        color: #3E3E3E;
+        font-weight: 300;
+    }
+
+    input {
+        color: #FFFFFF;
+        width: 340px;
+        height: 49px;
+        background-color: #FFFFFF;
+        border-color: #ADADAD;
+        border-width: 1px;
+        border-radius: 5px;
+    }
+
+    .forgot_password {
+        padding-left: 70.44px;
+        color: #ADADAD;
+        font-size: 15px;
+    }
+}
+
+
+@media only screen and (min-width:577px) and (max-width:992px) {
+    #left-side {
+        scale: 0.8;
+        display: flex;
+        justify-content: center;
+    }
+
+    #rigth-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width:993px) and (max-width:1200px) {
+    #hero-image-scale {
+        scale: 0.7;
+        margin-right: -55px;
+    }
+
+    .text2 {
+        padding-top: 19.17px;
+        font-size: 35px;
+        color: #3E3E3E;
+        font-weight: 300;
+    }
+}
+
+@media only screen and (min-width:1201px) and (max-width:1400px) {
+    #hero-image-scale {
+        scale: 0.8;
+        margin-right: 0px;
+    }
+}

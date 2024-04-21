@@ -1,0 +1,73 @@
+﻿tr,
+body {
+    background-color: #dcdbdb;
+}
+
+button {
+    height: 50px;
+    border-radius: 10px;
+    border: 0.5px solid;
+    margin-top: 5px;
+    border-color: cadetblue;
+    color: cadetblue;
+}
+
+.patientDetails {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+.validation,
+.edit,
+.bi-arrow-down,
+.accordion {
+    display: none;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+label,
+.form-control {
+    margin-top: 2vh;
+}
+
+input {
+    height: 58px;
+}
+
+.cancleButton {
+    color: cadetblue;
+}
+
+.bottomButtons {
+    background-color: cadetblue;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: #0a8185;
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* ------------media Quries------------ */
+
+@media screen and (max-width: 576px) {
+
+    .accordion {
+        display: block;
+    }
+
+    .table-responsive {
+        display: none;
+    }
+
+    .h4 {
+        font-size: calc(1rem + .3vw);
+    }
+}

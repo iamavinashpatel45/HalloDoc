@@ -1,0 +1,187 @@
+﻿@model Services.ViewModels.Admin.CloseCase
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Close Case";
+    ViewBag.JsFile = "/js/Admin/closeCase.js";
+    ViewBag.CssFile = "/css/Admin/closeCase.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+        <h3>
+            Close Case
+        </h3>
+        <a asp-controller="Admin" asp-action="Dashboard">
+            <button class="bg-white px-3 fw-bold">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="patientDetails">
+        <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+            <div>
+                Patient name
+                <div class="h4">
+                    @Model.FirstName @Model.LastName
+                    (MD4564984654921)
+                </div>
+            </div>
+            <button class="px-4 fw-bold bg-white">
+                Create Invoice
+            </button>
+        </div>
+        <h5>
+            Documents
+        </h5>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-6 bg-transparent">
+                            File Name
+                        </th>
+                        <th class="col-3 bg-transparent fw-bold">
+                            Uploader
+                        </th>
+                        <th class="col-2 bg-transparent fw-bold">
+                            <button class="h-100 border-0 fw-bold text-black bg-transparent px-0"
+                                onclick="shortTable()">
+                                Upload Date
+                                <i class="bi bi-arrow-up"></i>
+                                <i class="bi bi-arrow-down"></i>
+                            </button>
+                        </th>
+                        <th class="col-1 bg-transparent fw-bold">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.FileList.OrderBy(a => a.CreatedDate))
+                    {
+                        <tr class="align-middle bg-white">
+                            <td>
+                                <i class="bi bi-file-earmark-pdf-fill"></i>
+                                @item.FileName
+                            </td>
+                            <td>
+                                @item.Uploder
+                            </td>
+                            <td>
+                                @item.CreatedDate.ToString("MMM dd, yyyy")
+                            </td>
+                            <td>
+                                <a href="~/Files/@item.RequestId/@item.FileName" download="@item.FileName">
+                                    <button class="bg-white px-3 fs-5">
+                                        <i class="bi bi-cloud-arrow-down"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @foreach (var item in Model.FileList)
+        {
+            <div class="accordion accordion-flush w-100" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button px-0 collapsed bg-white text-black" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-@item.RequestWiseFileId"
+                            aria-controls="panelsStayOpen-collapseOne">
+                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                            @item.FileName
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-@item.RequestWiseFileId" class="accordion-collapse collapse "
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body d-flex justify-content-between align-items-center px-0">
+                            <div>
+                                <div>
+                                    @item.Uploder
+                                </div>
+                                <div>
+                                    @item.CreatedDate.ToString("MMM dd, yyyy")
+                                </div>
+                            </div>
+                            <a href="~/Files/@item.RequestId/@item.FileName" download="@item.FileName">
+                                <button class="bg-white px-3 fs-5">
+                                    <i class="bi bi-cloud-arrow-down"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <form asp-controller="Admin" asp-action="CloseCase" id="form">
+            <h5>
+                Patient Information
+            </h5>
+            <fieldset disabled id="fieldset">
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="FirstName" class="form-control" id="firstName" placeholder="FirstName" />
+                        <label for="firstName">First Name</label>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="LastName" class="form-control" id="lastName" placeholder="LastName" />
+                        <label for="lastName">Last Name</label>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="BirthDate" class="form-control" id="birthDate" placeholder="BirthDate"
+                            type="date" />
+                        <label for="birthdate">Date of Birth</label>
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Phone" class="form-control" id="phone" placeholder="Mobile Number" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-xl-6 col-md-6 col-lg-6">
+                        <input asp-for="Email" class="form-control" id="email" placeholder="Email" disabled />
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-3 mb-2">
+                <a asp-controller="Admin" asp-action="RequestAddToCloseCase">
+                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="button">
+                        Close Case
+                    </button>
+                </a>
+                <button class="px-3 text-white fw-bold bottomButtons" type="button" id="editbutton"
+                    onclick="enableEdit(true)">
+                    Edit
+                </button>
+                <div class="edit">
+                    <button class="px-3 me-2 text-white fw-bold bottomButtons" type="submit">
+                        Save Changes
+                    </button>
+                    <button class="px-3 bg-white cancleButton fw-bold" type="button" onclick="enableEdit(false)">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    const phoneInputField = document.getElementById("phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        initialCountry: "in",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>

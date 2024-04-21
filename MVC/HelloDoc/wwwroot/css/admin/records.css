@@ -1,0 +1,78 @@
+﻿tr,
+body {
+    background-color: #dcdbdb;
+}
+
+button {
+    height: 50px;
+    border-radius: 10px;
+    border: 0.5px solid;
+    margin-top: 5px;
+    border-color: cadetblue;
+    color: cadetblue;
+}
+
+.recordList{
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+label,
+.form-select,
+.form-control {
+    margin-top: 1vh;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: #0a8185;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.accordion {
+    display: none;
+}
+
+.cloredButton {
+    background-color: cadetblue;
+}
+
+.accordion-button:not(.collapsed),
+.accordion-button:focus {
+    color: black;
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed),
+.accordion-button:focus {
+    color: black;
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")
+ }
+
+/* ----------media Queries------------ */
+
+@media screen and (max-width:768px) {
+
+    .accordion {
+        display: block;
+    }
+
+    .buttonText,
+    .table-responsive {
+        display: none;
+    }
+}

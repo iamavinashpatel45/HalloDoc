@@ -1,0 +1,57 @@
+﻿@model Services.ViewModels.Admin.BlockHistory
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Block History";
+    ViewBag.JsFile = "/js/Admin/record.js";
+    ViewBag.CssFile = "/css/admin/records.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+        <h3>
+            Block History
+        </h3>
+        <a asp-controller="Admin" asp-action="Dashboard">
+            <button class="bg-white px-3 fw-bold">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="recordList">
+        <form id="blockHistoryForm">
+            <div class="row">
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Name" class="form-control" id="firstname" placeholder="Name" />
+                    <label for="firstname">First Name</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Date" class="form-control" id="date" placeholder="Date" type="Date" />
+                    <label for="lastName">Date</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Email" class="form-control" id="email" placeholder="Email" />
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-floating col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <input asp-for="Phone" class="form-control" id="phone" placeholder="Number" />
+                    <label for="phone">Phone Number</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end align-items-center mt-2 mb-2">
+                <button class="bg-white px-3 me-3 fw-bold resetBlockHistory" type="button">
+                    Clear
+                </button>
+                <button class="px-3 cloredButton text-white fw-bold searchButtonBlockHistory" type="button">
+                    Search
+                </button>
+            </div>
+        </form>
+        <div class="tableData">
+            <partial name="_BlockHistoryTable" model="@Model.BlockHistoryTable"></partial>
+        </div>
+    </div>
+</div>

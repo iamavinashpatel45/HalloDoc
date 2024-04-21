@@ -1,0 +1,51 @@
+﻿body {
+    background-color: #dcdbdb;
+}
+
+button {
+    height: 50px;
+    color: cadetblue;
+    font-size: 20px;
+    background-color: white;
+}
+
+.form-floating > label {
+    left: 12px;
+    background-color: transparent;
+}
+
+label,
+.form-select,
+.form-control {
+    margin-top: 2vh;
+}
+
+#submitButton {
+    background-color: cadetblue;
+    color: white;
+}
+
+#form {
+    width: 100vw;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+#backBox {
+    width: 100px;
+}
+
+
+.validation{
+    display : none;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: #0a8185;
+    opacity: 1;
+    font-weight: 600;
+}

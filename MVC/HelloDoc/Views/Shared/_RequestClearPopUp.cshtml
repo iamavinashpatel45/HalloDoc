@@ -1,0 +1,22 @@
+﻿<link href="~/css/admin/_requestPopUp.css" rel="stylesheet" />
+<script src="~/js/Admin/requestPopUp.js"></script>
+<div class="modal" tabindex="-1" id="clearRequest">x
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column align-items-center p-5 text-center">
+                <img class="w-25 mb-3 mt-3" src="~/images/informtion-icon.png" />
+                <h5 class="mb-2"> Conformation For Clear Case</h5>
+                Are sure you want to clear this request? Ones clear this request then you are not able to see this request.
+                <input readonly class="d-none patientRequestId" type="text" />
+                <div class="d-flex mt-3 mb-2">
+                    <button type="button" class="btn mx-2 px-4" id="conformButton" onclick="clearCase()">
+                        Clear
+                    </button>
+                    <button type="reset" class="btn" data-bs-dismiss="modal" id="closeButton">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

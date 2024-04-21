@@ -1,0 +1,75 @@
+﻿@model List<Services.ViewModels.Admin.SchedulingTable>
+
+<div class="table-responsive">
+    <table class="table table-bordered bg-white text-center">
+        <thead>
+            <tr class="align-middle">
+                <th class="w-25">
+                    Staff
+                </th>
+                <th>
+                    SUN 
+                    <span id="sun"></span>
+                </th>
+                <th>
+                    MON 
+                    <span id="mon"></span>
+                </th>
+                <th>
+                    TUE 
+                    <span id="tue"></span>
+                </th>
+                <th>
+                    WED 
+                    <span id="wed"></span>
+                </th>
+                <th>
+                    THU 
+                    <span id="thu"></span>
+                </th>
+                <th>
+                    FIR 
+                    <span id="fir"></span>
+                </th>
+                <th>
+                    SAT 
+                    <span id="sat"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            <tr class="bg-pink">
+                <td class="bg-white w-25">
+                    Coverage
+                </td>
+                <td>0/24</td>
+                <td>0/24</td>
+                <td>0/24</td>
+                <td>0/24</td>
+                <td>0/24</td>
+                <td>0/24</td>
+                <td>0/24</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="w-25 bg-white">
+                        <img src="@item.Photo" class="image">
+                        @item.FirstName @item.LastName
+                    </td>
+                    @for(int i=0;i<7;i++)
+                    {
+                        if (item.WeekWise.ContainsKey(i))
+                        {
+                            <td>@item.WeekWise[i]/24</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

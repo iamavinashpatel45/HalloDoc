@@ -1,0 +1,82 @@
+﻿@model List<Services.ViewModels.Admin.SchedulingTable>
+
+<div class="table-responsive">
+    <table class="table table-bordered bg-white text-center" id="">
+        <thead>
+            <tr class="align-middle">
+                <th class="w-25">
+                    Staff
+                </th>
+                <th>12A</th>
+                <th>1A</th>
+                <th>2A</th>
+                <th>3A</th>
+                <th>4A</th>
+                <th>5A</th>
+                <th>6A</th>
+                <th>7A</th>
+                <th>8A</th>
+                <th>9A</th>
+                <th>10A</th>
+                <th>11A</th>
+                <th>12P</th>
+                <th>1P</th>
+                <th>2P</th>
+                <th>3P</th>
+                <th>4P</th>
+                <th>5P</th>
+                <th>6P</th>
+                <th>7P</th>
+                <th>8P</th>
+                <th>9P</th>
+                <th>10P</th>
+                <th>11P</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-pink">
+                <td class="bg-white w-25">
+                    Coverage
+                </td>
+                @for (int i = 0; i < 24; i++)
+                {
+                    <td></td>
+                }
+            </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td class="w-25 bg-white">
+                        <img src="@item.Photo" class="image">
+                        @item.FirstName @item.LastName
+                    </td>
+                    @for (int i = 0; i < 24; i++)
+                    {
+                        var data = @item.DayWise.FirstOrDefault(a => a.Time == i);
+                        if (data != null)
+                        {
+                            if(data.FirstHalf)
+                            {
+                                <td class="dayWiseColumnWidth"><div style="margin-right:50%; background-color:@data.Status; height:45px" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@data.ShiftDetailsId)"></div></td>
+                            }
+                            else if (data.SecoundHalf)
+                            {
+                                <td class="dayWiseColumnWidth"><div style="margin-left:50%; background-color:@data.Status; height:45px" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@data.ShiftDetailsId)"></div></td>
+                            }
+                            else
+                            {
+                                <td class="dayWiseColumnWidth" style="background-color:@data.Status" onclick="openViewShiftModal(@data.ShiftDetailsId)"></td>
+                            }
+                        }else
+                        {
+                            <td class="dayWiseColumnWidth"></td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*<table id="smallScreen">
+
+    </table>*@
+</div>

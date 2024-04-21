@@ -1,0 +1,49 @@
+﻿@model Services.ViewModels.Admin.Agreement
+
+<link href="~/css/admin/_requestPopUp.css" rel="stylesheet" />
+<script src="~/js/Admin/requestPopUp.js"></script>
+<div class="modal" tabindex="-1" id="sendAgreement">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Send Agreement</h5>
+                <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle-fill h3 modal-title"></i>
+                </button>
+            </div>
+            <form asp-controller="Admin" asp-action="SendAgreementPopUp" id="sendAgreementForm">
+                <input readonly class="d-none patientRequestId" asp-for="RequestId" type="text" />
+                <div class="modal-body">
+                    <div class="d-flex h5">
+                        <i class="bi bi-circle-fill mx-1" id="requesterIcon"></i>
+                        <div id="requesterName">
+
+                        </div>
+                    </div>
+                    To Send Agreement please make sure you are updating the correct contact information below for the responsible party.
+                    <div class="form-floating mt-3 mb-2">
+                        <input asp-for="Number" class="form-control" id="patientNumber" placeholder="Number" type="text"/>
+                        <label for="patientNumber">Phone Number</label>
+                        <span asp-validation-for="Number" class="text-danger"></span>
+                    </div>
+                    <span class="text-danger validation mb-3" id="patientNumberValidation">Number is Required</span>
+                    <div class="form-floating mb-2 mt-4">
+                        <input asp-for="Email" class="form-control" id="patientEmail" placeholder="Email"/>
+                        <label for="patientEmail">Email</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <span class="text-danger validation mb-3" id="patientEmailValidation1">Email is Required</span>
+                    <span class="text-danger validation mb-3" id="patientEmailValidation2">Enter Valid Email Eddress</span>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn mx-2" id="conformButton">
+                            Conform
+                        </button>
+                        <button type="reset" class="btn" data-bs-dismiss="modal" id="closeButton">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

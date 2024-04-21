@@ -1,0 +1,98 @@
+﻿@model Services.ViewModels.Admin.Access
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Access";
+    ViewBag.CssFile = "/css/admin/providers.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+<div class="container">
+    <h3 class="mt-3 mb-3">
+        Account Access
+    </h3>
+    <div class="providerList">
+        <div class="d-flex justify-content-end align-items-end mt-2 mb-3 topElements">
+            <a asp-controller="Admin" asp-action="CreateRole">
+                <button class="bg-white px-3 fw-bold py-2" type="button">
+                    Create Access
+                </button>
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-5 col-xl-5 col-lg-5 col-md-4 col-sm-4 bg-transparent">
+                            Name
+                        </th>
+                        <th class="col-5 col-xl-5 col-lg-4 col-md-4 col-sm-4 bg-transparent">
+                            Account Type
+                        </th>
+                        <th class="col-2 col-xl-5 col-lg-3 col-md-4 col-sm-4 bg-transparent">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.RolesData)
+                    {
+                        <tr class="align-middle bg-white">
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @item.AccountType
+                            </td>
+                            <td>
+                                <a asp-controller="Admin" asp-action="UpdateRole" asp-route-roleId="@item.RoleId">
+                                    <button class="bg-white px-3 me-2 fw-bold py-2">
+                                        Edit
+                                    </button>
+                                </a>
+                                <a asp-controller="Admin" asp-action="DeteteRole" asp-route-roleId="@item.RoleId">
+                                    <button class="bg-white px-3 fw-bold py-2">
+                                        Delete
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @foreach (var item in Model.RolesData)
+        {
+            <div class="accordion accordion-flush w-100" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button collapsed h-100 bg-white h5" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-@item.RoleId" aria-controls="panelsStayOpen-collapseOne">
+                            @item.Name
+                        </button>
+                        <hr class="h1">
+                    </h2>
+                    <div id="panelsStayOpen-@item.RoleId" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body row mx-0">
+                            Acount Type: @item.AccountType
+                            <div class="d-flex justify-content-end align-items-center mb-2">
+                                <a asp-controller="Admin" asp-action="UpdateRole" asp-route-roleId="@item.RoleId">
+                                    <button class="bg-white px-3 me-2 fw-bold py-2">
+                                        Edit
+                                    </button>
+                                </a>
+                                <a asp-controller="Admin" asp-action="DeteteRole" asp-route-roleId="@item.RoleId">
+                                    <button class="bg-white px-3 fw-bold py-2">
+                                        Delete
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <hr class="h1">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

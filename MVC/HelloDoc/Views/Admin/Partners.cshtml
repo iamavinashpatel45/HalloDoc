@@ -1,0 +1,38 @@
+﻿@model Services.ViewModels.Admin.Partners
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Partners";
+    ViewBag.JsFile = "/js/Admin/pratners.js";
+    ViewBag.CssFile = "/css/Admin/partners.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container-fluid">
+    <h4 class="mt-2 mb-2">
+        Vendor(s)
+    </h4>
+    <div class="partnersList">
+        <div class="d-flex justify-content-between align-items-center mt-2 mb-3 topElements">
+            <div class="d-flex" id="selects">
+                <input placeholder="Search Venders" class="shadow-none" type="search" id="searchPartners" />
+                <select class="select" id="profession">
+                    <option value="0">All Profession</option>
+                    @foreach (var item in Model.ProfessionList)
+                    {
+                        <option value="@item.Key">@item.Value</option>
+                    }
+                </select>
+            </div>
+            <a asp-controller="Admin" asp-action="BusinessProfile" id="addBusinessButton">
+                <button class="bg-white px-3 fw-medium w-100 fw-bold">
+                    Add Business
+                </button>
+            </a>
+        </div>
+        <div class="tableData">
+            <partial name="_PartnersTable" model="@Model.PartnersTableDatas"></partial>
+        </div>
+    </div>
+</div>

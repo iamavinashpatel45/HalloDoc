@@ -1,0 +1,336 @@
+﻿@model Services.ViewModels.Admin.SchedulingTableMonthWise
+
+@{
+    int date = 1;
+}
+
+<div class="table-responsive">
+    <table class="table table-bordered bg-white text-center" id="bigScreen">
+        <thead>
+            <tr class="bg-black text-white align-middle">
+                <th class="columnWidth">
+                    SUN
+                </th>
+                <th class="columnWidth">
+                    MON
+                </th>
+                <th class="columnWidth">
+                    TUE
+                </th>
+                <th class="columnWidth">
+                    WED
+                </th>
+                <th class="columnWidth">
+                    THU
+                </th>
+                <th class="columnWidth">
+                    FIR
+                </th>
+                <th>
+                    SAT
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @for (int i = 0; i < 7; i++,date++)
+                {
+                    if (i < Model.StartDate)
+                    {
+                        date--;
+                        <td class="columnHeight">
+                            <div class="divHeight"></div>
+                            <div class="divHeight"></div>
+                            <div class="divHeight"></div>
+                            <div class="divHeight"></div>
+                            <div class="divHeight"></div>
+                            <div class="divHeight"></div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="columnHeight">
+                            <div class="divHeight d-flex align-items-center justify-content-center bg-pink fw-bold fs-5">
+                                @date
+                            </div>
+                            @if(@Model.MonthWise.ContainsKey(date))
+                            {
+                                int totalshift = @Model.MonthWise[date].Count;
+                                if(totalshift<=5)
+                                {
+                                    foreach (var item in @Model.MonthWise[date])
+                                    {
+                                        <div class="divHeight @item.Status" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@item.ShiftDetailsId)">
+                                            <div>@item.StartTime - @item.EndTime</div>
+                                            <div>@item.ProviderName</div>
+                                        </div>
+                                    }
+                                    for(int z = totalshift +1;z <= 5;z++)
+                                    {
+                                        <div class="divHeight">
+                                            
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var item in @Model.MonthWise[date].Take(4))
+                                    {
+                                        <div class="divHeight @item.Status" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@item.ShiftDetailsId)">
+                                            <div>@item.StartTime - @item.EndTime</div>
+                                            <div>@item.ProviderName</div>
+                                        </div>
+                                    }
+                                    <div class="divHeight d-flex justify-content-center align-items-center">
+                                        <button class="border-0 bg-transparent p-0 m-0 fw-bold" onclick="viewMore(@date)">
+                                            View More
+                                        </button>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                for (int z = 1; z <= 5; z++)
+                                {
+                                    <div class="divHeight">
+                                        
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
+                }
+            </tr>
+            @for(int j=2;j <= (@Model.TotalDays + Model.StartDate) / 7 ; j++)
+            {
+                <tr>
+                    @for (int i = 0; i < 7; i++,date++)
+                    {
+                        <td class="columnHeight">
+                            <div class="divHeight d-flex align-items-center justify-content-center bg-pink fw-bold fs-5">
+                                @date
+                            </div>
+                            @if (@Model.MonthWise.ContainsKey(date))
+                            {
+                                int totalshift = @Model.MonthWise[date].Count;
+                                if (totalshift <= 5)
+                                {
+                                    foreach (var item in @Model.MonthWise[date])
+                                    {
+                                        <div class="divHeight @item.Status" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@item.ShiftDetailsId)">
+                                            <div>@item.StartTime - @item.EndTime</div>
+                                            <div>@item.ProviderName</div>
+                                        </div>
+                                    }
+                                    for (int z = totalshift + 1; z <= 5; z++)
+                                    {
+                                        <div class="divHeight">
+                                            
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var item in @Model.MonthWise[date].Take(4))
+                                    {
+                                        <div class="divHeight @item.Status" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@item.ShiftDetailsId)">
+                                            <div>@item.StartTime - @item.EndTime</div>
+                                             <div>@item.ProviderName</div>
+                                        </div>
+                                    }
+                                    <div class="divHeight d-flex justify-content-center align-items-center">
+                                        <button class="border-0 bg-transparent p-0 m-0 fw-bold" onclick="viewMore(@date)">
+                                            View More
+                                        </button>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                for (int z = 1; z <= 5; z++)
+                                {
+                                    <div class="divHeight">
+                                        
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+            @if( date <= Model.TotalDays)
+            {
+                <tr>
+                    @for (int i = 0; i < 7; i++, date++)
+                    {
+                        if (date > Model.TotalDays)
+                        {
+                            <td class="columnHeight">
+                                <div class="divHeight"></div>
+                                <div class="divHeight"></div>
+                                <div class="divHeight"></div>
+                                <div class="divHeight"></div>
+                                <div class="divHeight"></div>
+                                <div class="divHeight"></div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="columnHeight">
+                                <div class="divHeight d-flex align-items-center justify-content-center bg-pink fw-bold fs-5">
+                                    @date
+                                </div>
+                                @if (@Model.MonthWise.ContainsKey(date))
+                                {
+                                    int totalshift = @Model.MonthWise[date].Count;
+                                    if (totalshift <= 5)
+                                    {
+                                        foreach (var item in @Model.MonthWise[date])
+                                        {
+                                            <div class="divHeight @item.Status" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@item.ShiftDetailsId)">
+                                                <div>@item.StartTime - @item.EndTime</div>
+                                                <div>@item.ProviderName</div>
+                                            </div>
+                                        }
+                                        for (int z = totalshift + 1; z <= 5; z++)
+                                        {
+                                            <div class="divHeight">
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (var item in @Model.MonthWise[date].Take(4))
+                                        {
+                                            <div class="divHeight @item.Status" data-bs-target="#viewShiftDetails" data-bs-toggle="modal" onclick="openViewShiftModal(@item.ShiftDetailsId)">
+                                                <div>@item.StartTime - @item.EndTime</div>
+                                                <div>@item.ProviderName</div>
+                                            </div>
+                                        }
+                                        <div class="divHeight d-flex justify-content-center align-items-center">
+                                            <button class="border-0 bg-transparent p-0 m-0 fw-bold" onclick="viewMore(@date)">
+                                                View More
+                                            </button>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    for (int z = 1; z <= 5; z++)
+                                    {
+                                        <div class="divHeight">
+                                        </div>
+                                    }
+                                }
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+            @{
+                date = 1;
+            }
+        </tbody>
+    </table>
+    <table class="table table-bordered bg-white text-center align-middle" id="smallScreen">
+        <thead>
+            <tr class="bg-black text-white">
+                <th>
+                    SUN
+                </th>
+                <th>
+                    MON
+                </th>
+                <th>
+                    TUE
+                </th>
+                <th>
+                    WED
+                </th>
+                <th>
+                    THU
+                </th>
+                <th>
+                    FIR
+                </th>
+                <th>
+                    SAT
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @for (int i = 0; i < 7; i++,date++)
+                {
+                    if (i < Model.StartDate)
+                    {
+                        date--;
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>
+                            @if(Model.MonthWise.ContainsKey(date))
+                            {
+                                <span class="bg-success p-1 rounded-pill text-white" onclick="viewMore(@date)">
+                                    @date
+                                </span>
+                            }
+                            else
+                            {
+                                @date
+                            }
+                        </td>
+                    }
+                }
+            </tr>
+             @for(int j=2;j <= (@Model.TotalDays + Model.StartDate) / 7 ; j++)
+            {
+                <tr>
+                    @for (int i = 0; i < 7; i++,date++)
+                    {
+                        <td>
+                            @if (Model.MonthWise.ContainsKey(date))
+                            {
+                                <span class="bg-success p-1 rounded-pill text-white" onclick="viewMore(@date)">
+                                    @date
+                                </span>
+                            }
+                            else
+                            {
+                                @date
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+            @if( date <= Model.TotalDays)
+            {
+                <tr>
+                    @for (int i = 0; i < 7; i++, date++)
+                    {
+                        if (date > Model.TotalDays)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>
+                                @if (Model.MonthWise.ContainsKey(date))
+                                {
+                                    <span class="bg-success p-1 rounded-pill text-white" onclick="viewMore(@date)">
+                                        @date
+                                    </span>
+                                }
+                                else
+                                {
+                                    @date
+                                }
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,56 @@
+﻿@model Services.ViewModels.Login
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Login Page";
+    ViewBag.JsFile = "/js/loginPage.js";
+    ViewBag.CssFile = "/css/Admin/loginPage.css";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6 col-md-6 col-lg-6 vh-100 left-side">
+            <img class="w-100 h-100" src="~/images/loginImage.jpg" />
+        </div>
+        <form asp-controller="Admin" asp-action="LoginPage"
+            class="col-xl-6 col-md-6 col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center vh-100">
+            <span class="d-flex justify-content-end" id="back-button">
+                <a class="mb-5 backto-patientsite" asp-controller="Patient" asp-action="PatientSite">
+                    <i class="bi bi-chevron-left bi-xl"></i>
+                    Back
+                </a>
+            </span>
+            <img class="w-25" src="~/images/helloDocLogo.png" />
+            <span class="mt-4 mb-2 fw-bold fs-4">
+                Login To Your Account
+            </span>
+            <div class="input-group w-50 mt-2">
+                <div class="form-floating flex-grow-1">
+                    <input asp-for="Email" class="form-control" id="email" type="email" placeholder="Email" />
+                    <label for="email">Email</label>
+                </div>
+                <i class="bi bi-envelope input-group-text bg-transparent"></i>
+            </div>
+            <span asp-validation-for="Email" class="text-danger w-50"></span>
+            <div class="input-group w-50 mt-2">
+                <div class="form-floating flex-grow-1">
+                    <input asp-for="PasswordHash" class="form-control" id="password" type="password"
+                        placeholder="Password" />
+                    <label for="password">Password</label>
+                </div>
+                <i class="bi bi-eye input-group-text bg-transparent" id="passwordIcon"></i>
+            </div>
+            <span asp-validation-for="PasswordHash" class="text-danger w-50"></span>
+            <button type="submit" class="button w-50 mt-2 fs-4">
+                Log In
+            </button>
+            <a class="mt-3 text-primary" asp-controller="Patient" asp-action="ResetPassword"> Forgot Password? </a>
+            <div class="bottom">
+                <a class="mx-2"> Terms of Conditions </a>
+                |
+                <a class="mx-2"> Privacy Policy </a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,170 @@
+﻿@model Services.ViewModels.Admin.PatientRecord
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="bg-transparent">
+                    Client/Member
+                </th>
+                <th class="bg-transparent">
+                    Created date
+                </th>
+                <th class="bg-transparent">
+                    Conformation
+                </th>
+                <th class="bg-transparent">
+                    ProviderName
+                </th>
+                <th class="bg-transparent">
+                    Conclude Date
+                </th>
+                <th class="bg-transparent">
+                    Status
+                </th>
+                <th class="bg-transparent">
+                    Final Report
+                </th>
+                <th class="bg-transparent">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.patientRecordTableDatas)
+            {
+                <tr class="align-middle bg-white">
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.CreatedDate.ToString("MMM dd,yy")
+                    </td>
+                    <td>
+                        @item.Conformation
+                    </td>
+                    <td>
+                        @item.ProviderName
+                    </td>
+                    <td>
+                        @item.ConcludeedDate.ToString("MMM dd,yy")
+                    </td>
+                    <td>
+                        @item.Ststus
+                    </td>
+                    <td>
+                        <button class="bg-white px-3 fw-bold">
+                            View
+                        </button>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="p-2 dropdown-toggle bg-white fw-bold" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button class="dropdown-item" onclick="navigatToViewCase(@item.RequestId)">
+                                        View Case
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item">
+                                        chat
+                                    </button>
+                                </li>
+                                @if(item.CountDocument > 0)
+                                {
+                                    <li>
+                                        <button class="dropdown-item" onclick="navigatToViewDocuments(@item.RequestId)">
+                                            (@item.CountDocument) Documents
+                                        </button>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@foreach (var item in Model.patientRecordTableDatas)
+{
+    <div class="accordion accordion-flush w-100" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button collapsed h-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-@item.RequestId" aria-controls="panelsStayOpen-collapseOne">
+                    <div class="d-flex flex-column">
+                        @item.Name
+                        @item.Conformation
+                    </div>
+                </button>
+                <hr class="h1">
+            </h2>
+            <div id="panelsStayOpen-@item.RequestId" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body row">
+                    <div>
+                        <i class="bi bi-envelope rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Crated Date : @item.CreatedDate.ToString("MMM dd,yy")
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-telephone rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Provider : @item.ProviderName
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-geo-alt rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Concluded Date : @item.ConcludeedDate
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <i class="bi bi-geo-alt rounded-circle border border-1 border-primary p-2"></i>
+                        <span class="h6">
+                            Status : @item.Ststus
+                        </span>
+                    </div>
+                    <button class="bg-white px-3 fw-bold mb-3 mt-3" onclick="navigatToViewCase(@item.RequestId)">
+                        View Case
+                    </button>
+                    @if (item.CountDocument > 0)
+                    {
+                        <button class="bg-white px-3 fw-bold">
+                            (@item.CountDocument) Documents
+                        </button>
+                    }
+                    <hr class="h1">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (Model != null)
+{
+    <div class="d-flex justify-content-between">
+        Showing @Model.StartRange to @Model.EndRange of @Model.TotalRequests entries
+        <div class="d-flex">
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getPatientRecord(1)" disabled=@(!Model.IsFirstPage)>
+                «
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getPatientRecord(@(Model.PageNo-1))" disabled=@(!Model.IsPreviousPage)>
+                ‹
+            </button>
+            <button class="border-1 rounded-0 mx-2 px-3 currentPage bg-white">
+                @Model.PageNo
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="getPatientRecord(@(Model.PageNo+1))"
+                    disabled=@(!Model.IsNextPage)>
+                ›
+            </button>
+            <button class="border-0 rounded-0 fs-4 mx-2 bg-transparent" onclick="navigateToLastPagePatinetRecord(@Model.TotalRequests)" disabled=@(!Model.IsLastPage)>
+                »
+            </button>
+        </div>
+    </div>
+}

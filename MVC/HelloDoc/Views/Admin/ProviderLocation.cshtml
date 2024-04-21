@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Provider Location";
+    ViewBag.CssFile = "/css/Admin/providerLocation.css";
+    ViewBag.Header = "_AdminDashboardHeader";
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+        <h3>
+            Provider Location
+        </h3>
+        <a asp-controller="Admin" asp-action="Dashboard">
+            <button class="bg-white px-3 fw-medium">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="mapView">
+        <div id="map"></div>
+    </div>
+</div>
+<script>
+    var map = L.map('map').setView([23.0225, 72.5714], 11);
+    googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }).addTo(map);
+    $.ajax({
+        url: '/Admin/GetProviderLocation',
+        method: 'GET',
+        success: function (response) {
+            response.map(function (res) {
+                L.marker([res.latitude, res.longitude]).addTo(map).bindPopup(res.providerName)
+            })
+        }
+    })
+</script>

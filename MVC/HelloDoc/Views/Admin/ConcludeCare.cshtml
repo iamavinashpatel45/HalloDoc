@@ -1,0 +1,154 @@
+﻿@model Services.ViewModels.Physician.ConcludeCare
+
+@{
+    Layout = "_PhysicianLayout";
+    ViewData["Title"] = "Conclude Care";
+    ViewBag.JsFile = "/js/viewDocument.js";
+    ViewBag.CssFile = "/css/viewDocument.css";
+    ViewBag.Header = "_PhysicianDashboardHeader";
+}
+
+
+<div class="container tab-content" id="dashboard_content">
+    <div class="d-flex justify-content-between align-content-center mt-3 mb-3">
+        <span class="h3">
+            Documents
+        </span>
+        <a asp-controller="Physician" asp-action="Dashboard">
+            <button id="backBox">
+                <i class="bi bi-chevron-left"> </i>
+                Back
+            </button>
+        </a>
+    </div>
+    <div class="main-body">
+        <div class="w-100">
+            Patient Name
+        </div>
+        <div class="h3 w-100">
+            @Model.FirstName @Model.LastName (MD2347523647237)
+        </div>
+        <div class="w-100">
+            Check here to review and add file that you or the Client/member has attached to the Request.
+        </div>
+        <form asp-controller="Admin" asp-action="ConcludeCare" enctype="multipart/form-data" id="fileUploadForm"
+              class="mb-4 mt-4">
+            <div class="input-group w-100">
+                <input class="form-control" placeholder="Select File" type="file" id="file-picker" asp-for="File">
+                <button class="fs-5 button" id="uploadButton" type="submit">
+                    <i class="bi bi-cloud-arrow-up-fill "></i>
+                    Upload
+                </button>
+            </div>
+            <span asp-validation-for="File" class="text-danger"></span>
+        </form>
+        <div class="d-flex justify-content-between align-content-center mt-3 mb-3">
+            <span class="h3 w-100">
+                Documents
+            </span>
+            <div class="d-flex">
+                <button id="downloadAll" class="fw-bold">
+                    <span id="buttonText">
+                        Download All
+                    </span>
+                    <i class="bi bi-cloud-arrow-down" id="downloadIcon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="col-5">
+                            <input type="checkbox" id="mainCheckBox">
+                        </th>
+                        <th class="col-3">
+                            Uploader
+                        </th>
+                        <th class="col-3">
+                            Upload Date
+                        </th>
+                        <th class="col-1">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.FileList)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="checkBox" id="@item.RequestWiseFileId"
+                                       onchange="onCheckboxChnage(this,@Model.FileList.Count)">
+                                <i class="bi bi-file-earmark-pdf-fill mx-2"></i>
+                                @item.FileName
+                            </td>
+                            <td>
+                                @item.Uploder
+                            </td>
+                            <td>
+                                @item.CreatedDate.ToString("MMM dd, yyyy")
+                            </td>
+                            <td class="d-flex">
+                                <a href="~/Files/@item.RequestId/@item.FileName" download="@item.FileName"
+                                   class="download me-2 @item.RequestWiseFileId">
+                                    <button class="iconButtons">
+                                        <i class="bi bi-cloud-arrow-down"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="accordion w-100" id="accordionFlushExample">
+            @foreach (var item in Model.FileList)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse-@item.RequestWiseFileId" aria-controls="panelsStayOpen-collapseOne">
+                            <input type="checkbox" id="@item.RequestWiseFileId"
+                                   onchange="onCheckboxChnage(this,@Model.FileList.Count)">
+                            <i class="bi bi-file-earmark-pdf-fill mx-2"></i>
+                            @item.FileName
+                        </button>
+                    </h2>
+                    <div id="collapse-@item.RequestWiseFileId" class="accordion-collapse collapse"
+                         aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <div class="col-10">
+                                <div>
+                                    @item.Uploder
+                                </div>
+                                <div>
+                                    @item.CreatedDate.ToString("MMM dd, yyyy")
+                                </div>
+                            </div>
+                            <a href="~/Files/@item.RequestId/@item.FileName" download="@item.FileName"
+                               class="download @item.RequestWiseFileId">
+                                <button id="downloadButton" class="px-3">
+                                    <i class="bi bi-cloud-arrow-down"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <form asp-controller="Physician" asp-action="FinalConcludeCare">
+            <div class="form-floating w-100 mt-2">
+                <textarea class="form-control border-2 mb-2 h-100" placeholder="Additional Notes" rows="5" asp-for="Notes" id="newnotes"></textarea>
+                <label for="newnotes">Additional Notes</label>
+                <span class="text-danger mb-2" asp-validation-for="Notes"></span>
+            </div>
+            <div class="p-3 d-flex justify-content-end">
+                <button id="saveChanges" class="px-3 fw-bold" type="submit">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
